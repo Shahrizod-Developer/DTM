@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "196885708410",
+    "project_id": "dtm-app-d559f",
+    "storage_bucket": "dtm-app-d559f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196885708410:android:c8d36fd1aa8d8a8d2945c3",
+        "android_client_info": {
+          "package_name": "uz.gita.dtm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "196885708410-fr84q2lhbrgnj9257924umk7a8lll7n0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uz.gita.dtm",
+            "certificate_hash": "9e3720c32d1e389c685dc91a8a01a978a35ab46a"
+          }
+        },
+        {
+          "client_id": "196885708410-9lt1773jpajd5i5lc0abt2ls4igpntui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgc6DFcJn3QOsmxsZEVDcQ1bESPCn23F8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "196885708410-9lt1773jpajd5i5lc0abt2ls4igpntui.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
