@@ -1,5 +1,6 @@
 package uz.gita.dtm.domain.usecase.impl
 
 import uz.gita.dtm.domain.usecase.HomeUseCase
+import javax.inject.Inject
 
-class HomeUseCaseImpl : HomeUseCase
+class HomeUseCaseImpl @Inject constructor(): HomeUseCase
