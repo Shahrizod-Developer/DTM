@@ -24,8 +24,5 @@ interface UseCaseModule {
     fun bindsHomeUseCase(impl: HomeUseCaseImpl): HomeUseCase
 
     @Binds
-    fun bindsMainUseCase(impl: MainUseCaseImpl): MainUseCase
-
-    @Binds
     fun bindsApplicationUseCase(impl:ApplicationUseCaseImpl):ApplicationUseCase
 }

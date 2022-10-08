@@ -19,7 +19,7 @@ class NewsRepositoryImpl @Inject constructor() : NewsRepository {
 
         val news = db.collection("news").addSnapshotListener { value, error ->
 
-            val data = value?.map {
+            val data = value?.documents?.map {
                 it.toNews()
             }
             trySend(data ?: emptyList())

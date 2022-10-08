@@ -2,9 +2,12 @@ package uz.gita.dtm.domain.repository.applicant.impl
 
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flowOn
 import uz.gita.dtm.data.models.mapper.Mapper.toAddress
 import uz.gita.dtm.data.models.mapper.Mapper.toEducation
 import uz.gita.dtm.data.models.mapper.Mapper.toPassport
@@ -31,22 +34,23 @@ class ApplicantRepositoryImpl @Inject constructor() : ApplicantRepository {
                 trySend(data[0])
             }
             awaitClose { passport.remove() }
-        }
+        }.flowOn(Dispatchers.IO)
 
     override suspend fun addAddress(applicantAddress: ApplicantAddress) {
+
         db.collection("address").document(applicantAddress.id).set(applicantAddress)
     }
 
     override suspend fun getAddress(jShShR: Long): Flow<ApplicantAddress> = callbackFlow {
 
         val address = db.collection("address").addSnapshotListener { value, error ->
-            val data = value!!.map {
+            val data = value!!.documents.map {
                 it.toAddress()
             }
             trySend(data[0])
         }
         awaitClose { address.remove() }
-    }
+    }.flowOn(Dispatchers.IO)
 
     override suspend fun addEducation(education: Education) {
         db.collection("educations").document(education.id).set(education)
@@ -55,11 +59,11 @@ class ApplicantRepositoryImpl @Inject constructor() : ApplicantRepository {
     override suspend fun getEducation(jShShR: Long): Flow<Education> = callbackFlow {
 
         val address = db.collection("educations").addSnapshotListener { value, error ->
-            val data = value!!.map {
+            val data = value!!.documents.map {
                 it.toEducation()
             }
             trySend(data[0])
         }
         awaitClose { address.remove() }
-    }
+    }.flowOn(Dispatchers.IO)
 }
