@@ -8,11 +8,11 @@ data class Application(
     val date: Long,
     val time: Long,
     val state: Boolean,
-    val pay: Pay,
+    val pay: String,
     val applicantName: String,
     val region: String,
     val selectionPriority: String,
     val targetEducation: String,
     val language: String,
-    val selectedDirection: List<Institution>
+    val selectedDirection: String
 )
