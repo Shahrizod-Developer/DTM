@@ -7,7 +7,7 @@ import uz.gita.dtm.data.utils.ResultData
 
 interface ApplicationRepository {
 
-//    fun getApplications(number: String): Flow<List<Application>>
+    fun getApplications(number: String): Flow<List<Application>>
 
     fun addApplication(application: Application)
 
