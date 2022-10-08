@@ -7,7 +7,5 @@ data class Passport(
     val passportsSeries: String,
     val passportSeriesNumber: Long,
     val jShShir: Long,
-    val region: String,
-    val district: String,
-    val address: String,
+
 )
