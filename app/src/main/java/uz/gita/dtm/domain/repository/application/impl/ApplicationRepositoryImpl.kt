@@ -2,9 +2,11 @@ package uz.gita.dtm.domain.repository.application.impl
 
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flowOn
 import uz.gita.dtm.data.models.mapper.Mapper.toApplication
 import uz.gita.dtm.data.models.mapper.Mapper.toPassport
 import uz.gita.dtm.data.models.persondata.Application
@@ -20,7 +22,7 @@ class ApplicationRepositoryImpl @Inject constructor() : ApplicationRepository {
         callbackFlow {
 
             val applications = db.collection("applications").addSnapshotListener { value, error ->
-                val data = value?.map {
+                val data = value?.documents?.map {
                     it.toApplication()
                 }
                 trySend(data ?: emptyList())

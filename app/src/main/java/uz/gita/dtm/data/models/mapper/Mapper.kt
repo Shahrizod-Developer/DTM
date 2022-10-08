@@ -7,6 +7,7 @@ import uz.gita.dtm.data.models.persondata.ApplicantAddress
 import uz.gita.dtm.data.models.persondata.Application
 import uz.gita.dtm.data.models.persondata.Education
 import uz.gita.dtm.data.models.persondata.Passport
+import uz.gita.dtm.data.models.service.Service
 
 object Mapper {
 
@@ -60,6 +61,13 @@ object Mapper {
         image = this["image"].toString(),
         title = this["title"].toString(),
         date = this["date"].toString().toLong()
+    )
+
+    fun DocumentSnapshot.toService() = Service(
+        id = this["id"].toString(),
+        title = this["title"].toString(),
+        image = this["image"].toString(),
+        desc = this["desc"].toString()
     )
 
     fun DocumentSnapshot.toAuthentication() = Authentication(
