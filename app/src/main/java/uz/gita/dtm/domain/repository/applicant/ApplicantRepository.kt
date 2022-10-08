@@ -10,14 +10,14 @@ import uz.gita.dtm.data.utils.ResultData
 
 interface ApplicantRepository {
 
-    suspend fun getPassport(request: ApplicantRequest): Flow<ResultData<Passport>>
+    suspend fun getPassport(request: ApplicantRequest): Flow<Passport>
 
     suspend fun addAddress(applicantAddress: ApplicantAddress)
 
-    suspend fun getAddress(jShShR: Long): Flow<ResultData<ApplicantAddress>>
+    suspend fun getAddress(jShShR: Long): Flow<ApplicantAddress>
 
     suspend fun addEducation(education: Education)
 
-    suspend fun getEducation(jShShR: Long): Flow<ResultData<Education>>
+    suspend fun getEducation(jShShR: Long): Flow<Education>
 
 }
