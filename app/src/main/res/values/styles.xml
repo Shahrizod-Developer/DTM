@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="background">@drawable/button_background_1</item>
+        <item name="android:insetTop">0dp</item>
+        android:textColor="@color/white"
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="input_text_style" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">40dp</item>
+        <item name="boxCornerRadiusBottomEnd">9dp</item>
+        <item name="boxCornerRadiusBottomStart">9dp</item>
+        <item name="boxCornerRadiusTopEnd">9dp</item>
+        <item name="boxCornerRadiusTopStart">9dp</item>
+        <item name="android:textColor">@color/text_color_black</item>
+        <item name="boxBackgroundColor">@color/purple_200</item>
+        <item name="hintEnabled">false</item>
+    </style>
+</resources>
