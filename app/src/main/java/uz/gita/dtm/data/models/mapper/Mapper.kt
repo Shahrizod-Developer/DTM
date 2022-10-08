@@ -1,6 +1,7 @@
 package uz.gita.dtm.data.models.mapper
 
 import com.google.firebase.firestore.DocumentSnapshot
+import uz.gita.dtm.data.models.auth.Authentication
 import uz.gita.dtm.data.models.news.News
 import uz.gita.dtm.data.models.persondata.ApplicantAddress
 import uz.gita.dtm.data.models.persondata.Application
@@ -59,5 +60,12 @@ object Mapper {
         image = this["image"].toString(),
         title = this["title"].toString(),
         date = this["date"].toString().toLong()
+    )
+
+    fun DocumentSnapshot.toAuthentication() = Authentication(
+        userId = this["id"].toString(),
+        phoneNumber = this["phoneNumber"].toString(),
+        password = this["password"].toString(),
+        jShShIR = this["jShShIR"].toString().toLong()
     )
 }

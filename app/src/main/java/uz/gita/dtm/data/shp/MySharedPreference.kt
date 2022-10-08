@@ -19,5 +19,25 @@ class MySharedPreference {
             set(number) {
                 sharedPref.edit().putString("PINCode", number).apply()
             }
+        var password: String
+            get() = sharedPref.getString("PASSWORD", "").toString()
+            set(number) {
+                sharedPref.edit().putString("PASSWORD", number).apply()
+            }
+        var phoneNumber: String
+            get() = sharedPref.getString("PhoneNumber", "").toString()
+            set(number) {
+                sharedPref.edit().putString("PhoneNumber", number).apply()
+            }
+        var verificationId: String
+            get() = sharedPref.getString("VerificationId", "").toString()
+            set(number) {
+                sharedPref.edit().putString("VerificationId", number).apply()
+            }
+        var JShShIR: Long
+            get() = sharedPref.getLong("JShShIR", -1L)
+            set(number) {
+                sharedPref.edit().putLong("JShShIR", number).apply()
+            }
     }
 }
