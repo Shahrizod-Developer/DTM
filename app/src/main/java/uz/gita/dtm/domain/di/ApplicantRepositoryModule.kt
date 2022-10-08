@@ -7,6 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import uz.gita.dtm.domain.repository.applicant.ApplicantRepository
 import uz.gita.dtm.domain.repository.applicant.impl.ApplicantRepositoryImpl
 import uz.gita.dtm.domain.repository.application.ApplicationRepository
+import uz.gita.dtm.domain.repository.application.impl.ApplicationRepositoryImpl
 import uz.gita.dtm.domain.repository.auth.AuthRepository
 import uz.gita.dtm.domain.repository.auth.impl.AuthRepositoryImpl
 import uz.gita.dtm.domain.repository.news.NewsRepository
@@ -19,17 +20,17 @@ import uz.gita.dtm.domain.repository.service.impl.ServiceRepositoryImpl
 interface ApplicantRepositoryModule {
 
     @Binds
-    fun bindsApplicationRepository(impl: ApplicationRepository): ApplicationRepository
+    fun bindsApplicationRepository(impl: ApplicationRepositoryImpl): ApplicationRepository
 
     @Binds
-    fun bindsApplicantRepository(impl:ApplicantRepositoryImpl):ApplicantRepository
+    fun bindsApplicantRepository(impl: ApplicantRepositoryImpl): ApplicantRepository
 
     @Binds
-    fun bindsAuthRepository(impl: AuthRepositoryImpl):AuthRepository
+    fun bindsAuthRepository(impl: AuthRepositoryImpl): AuthRepository
 
     @Binds
-    fun bindsNewsRepository(impl:NewsRepositoryImpl):NewsRepository
+    fun bindsNewsRepository(impl: NewsRepositoryImpl): NewsRepository
 
     @Binds
-    fun bindsServiceRepository(impl: ServiceRepositoryImpl):ServiceRepository
+    fun bindsServiceRepository(impl: ServiceRepositoryImpl): ServiceRepository
 }
