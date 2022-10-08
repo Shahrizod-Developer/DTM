@@ -7,4 +7,5 @@ import javax.inject.Inject
 class ServiceUseCaseImpl @Inject constructor(
     private val serviceRepository: ServiceRepository
 ) : ServiceUseCase {
+
 }
