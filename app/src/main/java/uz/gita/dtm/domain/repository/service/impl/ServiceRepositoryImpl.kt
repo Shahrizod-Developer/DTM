@@ -8,11 +8,11 @@ import uz.gita.dtm.domain.repository.service.ServiceRepository
 import javax.inject.Inject
 
 class ServiceRepositoryImpl @Inject constructor():ServiceRepository {
-    override fun getServiceList(): Flow<ResultData<Service>> {
+    override fun getServiceList(): Flow<List<Service>> {
         TODO("Not yet implemented")
     }
 
-    override fun getApplicationById(applicantId: String): Flow<ResultData<Application>> {
+    override fun getApplicationById(applicantId: String): Flow<Application> {
         TODO("Not yet implemented")
     }
 }
