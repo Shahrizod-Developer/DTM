@@ -1,4 +1,8 @@
 package uz.gita.dtm.domain.repository.applicant.impl
 
-class ApplicantRepositoryImpl {
+import javax.inject.Inject
+
+class ApplicantRepositoryImpl @Inject constructor(){
+
+
 }
