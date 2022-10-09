@@ -27,7 +27,6 @@ class ApplicantRepositoryImpl @Inject constructor() : ApplicantRepository {
     override suspend fun getPassport(request: ApplicantRequest): Flow<ResultData<Passport>> =
         callbackFlow {
 
-
             val passport = db.collection("passport").addSnapshotListener { value, error ->
                 val data = value!!.documents.map {
                     it.toPassport()

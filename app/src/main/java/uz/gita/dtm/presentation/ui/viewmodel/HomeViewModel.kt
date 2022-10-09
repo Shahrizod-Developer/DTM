@@ -9,6 +9,7 @@ interface HomeViewModel {
 
     val loading: Flow<Boolean>
     val serviceList: Flow<List<Service>>
+    val message: Flow<String>
 
     suspend fun add(applicant: Education)
 }

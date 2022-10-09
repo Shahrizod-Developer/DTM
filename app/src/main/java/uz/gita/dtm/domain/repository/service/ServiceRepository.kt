@@ -7,7 +7,7 @@ import uz.gita.dtm.data.utils.ResultData
 
 interface ServiceRepository {
 
-    fun getServiceList(): Flow<List<Service>>
+    fun getServiceList(): Flow<ResultData<List<Service>>>
 
-    fun getApplicationById(applicantId: String): Flow<Application>
+    fun getApplicationById(applicantId: String): Flow<ResultData<Application>>
 }
