@@ -22,30 +22,28 @@ class ServiceRepositoryImpl @Inject constructor() : ServiceRepository {
     private val db = Firebase.firestore
 
 
-    override fun getServiceList(): Flow<List<Service>> = callbackFlow<List<Service>> {
-
+    override fun getServiceList(): Flow<ResultData<List<Service>>> = callbackFlow {
         val serviceList = db.collection("services").addSnapshotListener { value, error ->
             val data = value?.documents?.map {
                 it.toService()
-            }
-            Log.d("GGG", value?.documents.toString())
-            trySend(data ?: emptyList())
+            }!!.toList()
+            trySend(ResultData.success(data))
         }
-
 
         awaitClose { serviceList.remove() }
     }.flowOn(Dispatchers.IO)
 
-    override fun getApplicationById(applicantId: String): Flow<Application> = callbackFlow {
+    override fun getApplicationById(applicantId: String): Flow<ResultData<Application>> =
+        callbackFlow {
 
 
-        val application = db.collection("applications").addSnapshotListener { value, error ->
-            val data = value?.documents?.map {
-                it.toApplication()
-            }?.filter { it -> it.id == applicantId }?.toList()?.get(0)
+            val application = db.collection("applications").addSnapshotListener { value, error ->
+                val data = value?.documents?.map {
+                    it.toApplication()
+                }?.filter { it -> it.id == applicantId }?.toList()?.get(0)
 
-            trySend(data!!)
-        }
-        awaitClose { application.remove() }
-    }.flowOn(Dispatchers.IO)
+                trySend(ResultData.success(data!!))
+            }
+            awaitClose { application.remove() }
+        }.flowOn(Dispatchers.IO)
 }
