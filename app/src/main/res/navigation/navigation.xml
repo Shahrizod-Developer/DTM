@@ -11,18 +11,10 @@
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.MainScreen"
         android:label="MainScreen"
         tools:layout="@layout/screen_main" />
+
     <fragment
-        android:id="@+id/loginScreen"
-        android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.LoginScreen"
-        android:label="screen_login"
-        tools:layout="@layout/screen_login" />
-    <fragment
-        android:id="@+id/profileScreen2"
+        android:id="@+id/profileScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.profile.ProfileScreen"
-        android:label="ProfileScreen" >
-        <action
-            android:id="@+id/action_profileScreen2_to_loginScreen"
-            app:destination="@id/loginScreen" />
-    </fragment>
+        android:label="ProfileScreen" />
 
 </navigation>

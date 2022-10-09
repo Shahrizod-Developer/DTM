@@ -10,6 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import uz.gita.dtm.R
 import uz.gita.dtm.data.models.persondata.Applicant
 import uz.gita.dtm.data.models.persondata.Education
@@ -27,9 +29,11 @@ class HomeScreen : Fragment(R.layout.screen_home) {
     @SuppressLint("FragmentLiveDataObserve")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        viewModel.serviceList.observe(this) {
-            Log.d("EEE", it.toString())
-        }
+
+        viewModel.loading
+        viewModel.serviceList.onEach {
+
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         lifecycleScope.launchWhenCreated {
             viewModel.add(

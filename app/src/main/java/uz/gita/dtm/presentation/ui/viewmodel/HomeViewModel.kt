@@ -7,7 +7,8 @@ import uz.gita.dtm.data.models.service.Service
 
 interface HomeViewModel {
 
-    val serviceList: LiveData<List<Service>>
+    val loading: Flow<Boolean>
+    val serviceList: Flow<List<Service>>
 
     suspend fun add(applicant: Education)
 }

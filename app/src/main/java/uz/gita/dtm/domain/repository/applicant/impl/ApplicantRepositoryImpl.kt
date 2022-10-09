@@ -24,14 +24,15 @@ class ApplicantRepositoryImpl @Inject constructor() : ApplicantRepository {
 
     private val db = Firebase.firestore
 
-    override suspend fun getPassport(request: ApplicantRequest): Flow<Passport> =
+    override suspend fun getPassport(request: ApplicantRequest): Flow<ResultData<Passport>> =
         callbackFlow {
 
+
             val passport = db.collection("passport").addSnapshotListener { value, error ->
-                val data = value!!.map {
+                val data = value!!.documents.map {
                     it.toPassport()
                 }
-                trySend(data[0])
+                trySend(ResultData.success(data[0]))
             }
             awaitClose { passport.remove() }
         }.flowOn(Dispatchers.IO)
