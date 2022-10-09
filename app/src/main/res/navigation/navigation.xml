@@ -3,11 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeScreen">
+    app:startDestination="@id/mainScreen">
 
 
     <fragment
-        android:id="@+id/homeScreen"
-        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.home.HomeScreen"
-        android:label="HomeScreen" />
+        android:id="@+id/mainScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.MainScreen"
+        android:label="MainScreen"
+        tools:layout="@layout/screen_main" />
+
 </navigation>
