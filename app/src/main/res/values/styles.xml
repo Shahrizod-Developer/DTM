@@ -2,8 +2,6 @@
 <resources>
 
     <style name="button">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">50dp</item>
         <item name="android:layout_marginTop">16dp</item>
         <item name="android:insetLeft">0dp</item>
         <item name="background">@drawable/button_background_1</item>
@@ -22,7 +20,7 @@
         <item name="boxCornerRadiusTopEnd">9dp</item>
         <item name="boxCornerRadiusTopStart">9dp</item>
         <item name="android:textColor">@color/text_color_black</item>
-        <item name="boxBackgroundColor">@color/purple_200</item>
+        <item name="boxBackgroundColor">@color/text_color_white</item>
         <item name="hintEnabled">false</item>
     </style>
 </resources>

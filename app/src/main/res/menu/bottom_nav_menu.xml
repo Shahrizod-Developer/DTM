@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/homeScreen"
-        android:icon="@drawable/ic_baseline_home_24"
+        android:icon="@drawable/ic_baseline_article_24"
         android:title="" />
 
     <item
