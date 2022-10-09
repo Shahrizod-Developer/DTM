@@ -25,13 +25,14 @@ class MainScreen : Fragment(R.layout.screen_main) {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-//                R.id.screenRecipe -> hideBottomNav()
+                R.id.loginScreen -> hideBottomNav()
 //                R.id.screenAdvanced -> hideBottomNav()
 //                R.id.screenArticle -> hideBottomNav()
                 else -> showBottomNav()
             }
         }
     }
+
     private fun showBottomNav() {
         binding.navView.visibility = View.VISIBLE
 

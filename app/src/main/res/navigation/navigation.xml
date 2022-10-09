@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/loginScreen">
+    app:startDestination="@id/mainScreen">
 
 
     <fragment
@@ -11,27 +11,10 @@
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.MainScreen"
         android:label="MainScreen"
         tools:layout="@layout/screen_main" />
+
     <fragment
-        android:id="@+id/loginScreen"
-        android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.LoginScreen"
-        android:label="screen_login"
-        tools:layout="@layout/screen_login">
-        <action
-            android:id="@+id/action_loginScreen_to_verificationScreen"
-            app:destination="@id/verificationScreen" />
-        <action
-            android:id="@+id/action_loginScreen_to_registrationScreen"
-            app:destination="@id/registrationScreen" />
-    </fragment>
-    <fragment
-        android:id="@+id/verificationScreen"
-        android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.VerificationScreen"
-        android:label="screen_verification"
-        tools:layout="@layout/screen_verification" />
-    <fragment
-        android:id="@+id/registrationScreen"
-        android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.RegistrationScreen"
-        android:label="screen_registration"
-        tools:layout="@layout/screen_registration" />
+        android:id="@+id/profileScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.profile.ProfileScreen"
+        android:label="ProfileScreen" />
 
 </navigation>

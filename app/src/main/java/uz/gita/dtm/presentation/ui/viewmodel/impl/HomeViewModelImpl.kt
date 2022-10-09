@@ -24,13 +24,18 @@ class HomeViewModelImpl @Inject constructor(
     private val navigator: Navigator
 ) : HomeViewModel, ViewModel() {
 
-    override var serviceList = MutableLiveData<List<Service>>()
+
+    override val loading = MutableStateFlow(false)
+
+    override var serviceList = MutableStateFlow(emptyList<Service>())
 
     init {
-        homeUseCase.getServiceList().onEach {
-            serviceList.postValue(it)
-        }.launchIn(viewModelScope)
-
+        viewModelScope.launch {
+            loading.emit(true)
+            homeUseCase.getServiceList().collectLatest {
+                serviceList.emit(it)
+            }
+        }
     }
 
     override suspend fun add(applicant: Education) = applicantRepository.addEducation(applicant)

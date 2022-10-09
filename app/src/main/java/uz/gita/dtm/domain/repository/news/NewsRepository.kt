@@ -6,5 +6,5 @@ import uz.gita.dtm.data.utils.ResultData
 
 interface NewsRepository {
 
-    fun getAllNews():Flow<List<News>>
+    fun getAllNews():Flow<ResultData<List<News>>>
 }
