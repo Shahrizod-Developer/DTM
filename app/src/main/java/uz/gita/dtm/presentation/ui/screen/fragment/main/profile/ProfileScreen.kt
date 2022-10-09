@@ -12,6 +12,6 @@ import uz.gita.dtm.presentation.ui.viewmodel.impl.ProfileViewModelImpl
 @AndroidEntryPoint
 class ProfileScreen : Fragment(R.layout.screen_profile) {
     private val viewBinding: ScreenProfileBinding by viewBinding(ScreenProfileBinding::bind)
-    private val viewModel:ProfileViewModel by viewModels<ProfileViewModelImpl>()
+    private val viewModel: ProfileViewModel by viewModels<ProfileViewModelImpl>()
 
 }
