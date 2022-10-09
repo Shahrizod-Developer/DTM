@@ -23,7 +23,7 @@ class LoginScreen : Fragment(R.layout.screen_login) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnLogin.setOnClickListener {
-            viewModel.btnLogin(requireActivity(), "+99891594308", "12345678")
+            viewModel.btnLogin(requireActivity(), "+998915914308", "12345678")
         }
     }
 }

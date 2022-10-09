@@ -34,7 +34,7 @@ class AuthRepositoryImpl @Inject constructor() : AuthRepository {
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
-                Log.d("TTT", "sms junatilmadi")
+                Log.d("TTT", "sms junatilmadi ${e.toString()}")
 
             }
 

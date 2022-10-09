@@ -3,13 +3,18 @@ package uz.gita.dtm.presentation.ui.viewmodel.impl
 import android.app.Activity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import uz.gita.dtm.domain.repository.auth.impl.AuthRepositoryImpl
 import uz.gita.dtm.presentation.ui.viewmodel.LoginScreenViewModel
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
 @HiltViewModel
-class LoginScreenViewModelImpl @Inject constructor() : LoginScreenViewModel, ViewModel() {
+class LoginScreenViewModelImpl @Inject constructor(
+    private val repositoryImpl: AuthRepositoryImpl
+) : LoginScreenViewModel, ViewModel() {
 
     override val messageLiveData = MutableLiveData<Int>()
     override val openRegistrationScreen = MutableLiveData<Unit>()
@@ -24,7 +29,9 @@ class LoginScreenViewModelImpl @Inject constructor() : LoginScreenViewModel, Vie
     }
 
     override fun btnLogin(activity: Activity, phoneNumber: String, password: String) {
-        TODO("Not yet implemented")
+        viewModelScope.launch {
+            repositoryImpl.sendSmsCode(activity , phoneNumber)
+        }
     }
 
     override fun openRegistrationScreen() {
