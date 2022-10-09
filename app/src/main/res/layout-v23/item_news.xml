@@ -20,7 +20,7 @@
         android:id="@+id/lottieLoading"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
-        android:elevation="4dp"
+        android:elevation="40dp"
         app:layout_constraintBottom_toBottomOf="@id/card"
         app:layout_constraintEnd_toEndOf="@+id/ivItem"
         app:layout_constraintStart_toStartOf="@id/card"
@@ -29,14 +29,15 @@
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/loading" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivItem"
+        app:shapeAppearance="@style/CornerCut"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_margin=".5dp"
         android:contentDescription="@null"
         android:elevation="4dp"
-        android:background="@drawable/news_item_image_background"
+        android:background="@drawable/img"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintBottom_toBottomOf="@id/card"
