@@ -30,5 +30,4 @@ class NewsViewModelImpl @Inject constructor(
 //            newsFlow.
             }
         }
-    }
 }
