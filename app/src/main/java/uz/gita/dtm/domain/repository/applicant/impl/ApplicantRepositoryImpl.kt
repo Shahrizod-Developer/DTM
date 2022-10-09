@@ -59,7 +59,7 @@ class ApplicantRepositoryImpl @Inject constructor() : ApplicantRepository {
 
     override suspend fun getEducation(jShShR: Long): Flow<Education> = callbackFlow {
 
-        val address = db.collection("educations").addSnapshotListener { value, error ->
+        val address = db.collection("educations").addSnapshotListener { value,  error ->
             val data = value!!.documents.map {
                 it.toEducation()
             }
