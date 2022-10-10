@@ -23,6 +23,7 @@ import kotlinx.coroutines.launch
 import uz.gita.dtm.R
 import uz.gita.dtm.databinding.ScreenHomeBinding
 import uz.gita.dtm.presentation.adapter.ServiceAdapter
+import uz.gita.dtm.presentation.ui.screen.dialog.AllServiceDialog
 import uz.gita.dtm.presentation.ui.viewmodel.HomeViewModel
 import uz.gita.dtm.presentation.ui.viewmodel.impl.HomeViewModelImpl
 import java.util.*
@@ -35,7 +36,11 @@ class HomeScreen : Fragment(R.layout.screen_home) {
     private val binding: ScreenHomeBinding by viewBinding(ScreenHomeBinding::bind)
     private val viewModel: HomeViewModel by viewModels<HomeViewModelImpl>()
     private val adapter: ServiceAdapter by lazy { ServiceAdapter(requireContext()) }
-    private val timer = Timer()
+
+    companion object {
+        val timer = Timer()
+    }
+
 
     @SuppressLint("FragmentLiveDataObserve")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,6 +60,15 @@ class HomeScreen : Fragment(R.layout.screen_home) {
             }
         }
 
+        adapter.onCLickItem {
+            viewModel.openServiceDetail(it)
+        }
+
+        binding.search.setOnClickListener {
+            val dialog = AllServiceDialog()
+            dialog.show(childFragmentManager, "")
+        }
+
         viewModel.serviceList.onEach {
 
             if (it == null) {
@@ -66,9 +80,7 @@ class HomeScreen : Fragment(R.layout.screen_home) {
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         binding.viewPager.adapter = adapter
-        binding.viewPager.offscreenPageLimit = 2
-//        binding.viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-
+        binding.viewPager.offscreenPageLimit = 3
         binding.viewPager.setCurrentItem(2, true)
         val comPosPageTarn = CompositePageTransformer()
         comPosPageTarn.addTransformer(MarginPageTransformer(10))
@@ -76,6 +88,7 @@ class HomeScreen : Fragment(R.layout.screen_home) {
         binding.viewPager.setPageTransformer(comPosPageTarn)
 
 //        timer.scheduleAtFixedRate(timerTask(), 3000, 6000)
+
     }
 
 //    private fun timerTask(): TimerTask {
@@ -93,11 +106,9 @@ class HomeScreen : Fragment(R.layout.screen_home) {
 //        }
 //        return timer
 //    }
-
-//    override fun onPause() {
-//        super.onPause()
+//
+//    override fun onDestroy() {
+//        super.onDestroy()
 //        timer.cancel()
 //    }
-
-
 }

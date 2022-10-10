@@ -10,6 +10,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.dtm.R
 import uz.gita.dtm.databinding.ScreenMainBinding
+import uz.gita.dtm.presentation.ui.screen.fragment.main.home.HomeScreen.Companion.timer
 
 @AndroidEntryPoint
 class MainScreen : Fragment(R.layout.screen_main) {
@@ -26,8 +27,12 @@ class MainScreen : Fragment(R.layout.screen_main) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.loginScreen -> hideBottomNav()
-//                R.id.screenAdvanced -> hideBottomNav()
-//                R.id.screenArticle -> hideBottomNav()
+                R.id.applicationScreen -> {
+                    timer.cancel()
+                }
+                R.id.newsScreen -> {
+                    timer.cancel()
+                }
                 else -> showBottomNav()
             }
         }

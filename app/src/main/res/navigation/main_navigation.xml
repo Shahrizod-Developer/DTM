@@ -9,6 +9,7 @@
         android:id="@+id/homeScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.home.HomeScreen"
         android:label="HomeScreen" />
+
     <fragment
         android:id="@+id/applicationScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.application.ApplicationScreen"
@@ -20,37 +21,6 @@
     <fragment
         android:id="@+id/profileScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.profile.ProfileScreen"
-        android:label="ProfileScreen">
-        <action
-            android:id="@+id/action_profileScreen_to_loginScreen"
-            app:destination="@id/loginScreen" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/loginScreen"
-        android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.LoginScreen"
-        android:label="screen_login"
-        tools:layout="@layout/screen_login">
-        <action
-            android:id="@+id/action_loginScreen_to_registrationScreen"
-            app:destination="@id/registrationScreen" />
-        <action
-            android:id="@+id/action_loginScreen_to_verificationScreen"
-            app:destination="@id/verificationScreen" />
-    </fragment>
-    <fragment
-        android:id="@+id/verificationScreen"
-        android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.VerificationScreen"
-        android:label="screen_verification"
-        tools:layout="@layout/screen_verification" />
-    <fragment
-        android:id="@+id/registrationScreen"
-        android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.RegistrationScreen"
-        android:label="screen_registration"
-        tools:layout="@layout/screen_registration">
-        <action
-            android:id="@+id/action_registrationScreen_to_verificationScreen"
-            app:destination="@id/verificationScreen" />
-    </fragment>
+        android:label="ProfileScreen" />
 
 </navigation>

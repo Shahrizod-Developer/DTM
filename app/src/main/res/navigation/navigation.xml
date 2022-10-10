@@ -10,6 +10,19 @@
         android:id="@+id/mainScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.MainScreen"
         android:label="MainScreen"
-        tools:layout="@layout/screen_main" />
+        tools:layout="@layout/screen_main">
+        <action
+            android:id="@+id/action_mainScreen_to_serviceDetailsScreen2"
+            app:destination="@id/serviceDetailsScreen2" />
+    </fragment>
+    <fragment
+        android:id="@+id/serviceDetailsScreen2"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.home.ServiceDetailsScreen"
+        android:label="ServiceDetailsScreen">
+
+        <argument
+            android:name="service"
+            app:argType="uz.gita.dtm.data.models.service.Service" />
+    </fragment>
 
 </navigation>

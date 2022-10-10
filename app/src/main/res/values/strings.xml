@@ -4,4 +4,6 @@
     <string name="cancel_bottom_dialog">cancel bottom dialog</string>
     <string name="ruxsatnomani_olish">Ruxsatnomani olish</string>
     <string name="yangiliklar">Yangiliklar</string>
+    <string name="abot_service">Xizmat haqida</string>
+    <string name="service_application">Xizmat bo\'yicha arizilarim</string>
 </resources>
