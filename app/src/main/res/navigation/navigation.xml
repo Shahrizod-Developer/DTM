@@ -12,9 +12,4 @@
         android:label="MainScreen"
         tools:layout="@layout/screen_main" />
 
-    <fragment
-        android:id="@+id/profileScreen"
-        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.profile.ProfileScreen"
-        android:label="ProfileScreen" />
-
 </navigation>

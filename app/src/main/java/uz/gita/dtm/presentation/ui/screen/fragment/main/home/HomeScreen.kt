@@ -35,6 +35,7 @@ class HomeScreen : Fragment(R.layout.screen_home) {
     private val binding: ScreenHomeBinding by viewBinding(ScreenHomeBinding::bind)
     private val viewModel: HomeViewModel by viewModels<HomeViewModelImpl>()
     private val adapter: ServiceAdapter by lazy { ServiceAdapter(requireContext()) }
+    private val timer = Timer()
 
     @SuppressLint("FragmentLiveDataObserve")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,25 +74,30 @@ class HomeScreen : Fragment(R.layout.screen_home) {
         comPosPageTarn.addTransformer(MarginPageTransformer(10))
 
         binding.viewPager.setPageTransformer(comPosPageTarn)
-        val timer = Timer()
-        timer.scheduleAtFixedRate(timerTask(), 3000, 6000)
+
+//        timer.scheduleAtFixedRate(timerTask(), 3000, 6000)
     }
 
-    private fun timerTask(): TimerTask {
+//    private fun timerTask(): TimerTask {
+//
+//        val timer = object : TimerTask() {
+//            override fun run() {
+//                requireActivity().runOnUiThread {
+//                    if (binding.viewPager.currentItem < adapter.currentList.size - 1) {
+//                        binding.viewPager.currentItem = binding.viewPager.currentItem + 1
+//                    } else {
+//                        binding.viewPager.currentItem = 0
+//                    }
+//                }
+//            }
+//        }
+//        return timer
+//    }
 
-        val timer = object : TimerTask() {
-            override fun run() {
-                requireActivity().runOnUiThread {
-                    if (binding.viewPager.currentItem < adapter.currentList.size - 1) {
-                        binding.viewPager.currentItem = binding.viewPager.currentItem + 1
-                    } else {
-                        binding.viewPager.currentItem = 0
-                    }
-                }
-            }
-        }
-        return timer
-    }
+//    override fun onPause() {
+//        super.onPause()
+//        timer.cancel()
+//    }
 
 
 }

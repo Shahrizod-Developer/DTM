@@ -16,18 +16,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <com.airbnb.lottie.LottieAnimationView-->
-<!--        android:id="@+id/lottieLoading"-->
-<!--        android:layout_width="@dimen/_40sdp"-->
-<!--        android:layout_height="@dimen/_40sdp"-->
-<!--        android:elevation="40dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="@id/card"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/ivItem"-->
-<!--        app:layout_constraintStart_toStartOf="@id/card"-->
-<!--        app:layout_constraintTop_toTopOf="@id/card"-->
-<!--        app:lottie_autoPlay="true"-->
-<!--        app:lottie_loop="true"-->
-<!--        app:lottie_rawRes="@raw/loading" />-->
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieLoading"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:elevation="40dp"
+        app:layout_constraintBottom_toBottomOf="@id/card"
+        app:layout_constraintEnd_toEndOf="@+id/ivItem"
+        app:layout_constraintStart_toStartOf="@id/card"
+        app:layout_constraintTop_toTopOf="@id/card"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivItem"

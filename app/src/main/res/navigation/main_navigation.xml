@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/loginScreen">
+    app:startDestination="@id/homeScreen">
 
     <fragment
         android:id="@+id/homeScreen"
@@ -20,16 +20,17 @@
     <fragment
         android:id="@+id/profileScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.profile.ProfileScreen"
-        android:label="ProfileScreen" >
+        android:label="ProfileScreen">
         <action
             android:id="@+id/action_profileScreen_to_loginScreen"
             app:destination="@id/loginScreen" />
     </fragment>
+
     <fragment
         android:id="@+id/loginScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.LoginScreen"
         android:label="screen_login"
-        tools:layout="@layout/screen_login" >
+        tools:layout="@layout/screen_login">
         <action
             android:id="@+id/action_loginScreen_to_registrationScreen"
             app:destination="@id/registrationScreen" />
@@ -46,9 +47,10 @@
         android:id="@+id/registrationScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.RegistrationScreen"
         android:label="screen_registration"
-        tools:layout="@layout/screen_registration" >
+        tools:layout="@layout/screen_registration">
         <action
             android:id="@+id/action_registrationScreen_to_verificationScreen"
             app:destination="@id/verificationScreen" />
     </fragment>
+
 </navigation>
