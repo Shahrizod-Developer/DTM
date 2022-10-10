@@ -4,13 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.launch
 import uz.gita.dtm.data.models.auth.User
-import uz.gita.dtm.data.utils.ResultData
-import uz.gita.dtm.domain.repository.auth.impl.AuthRepositoryImpl
+import uz.gita.dtm.domain.usecase.impl.AuthUseCaseImpl
 import uz.gita.dtm.presentation.ui.viewmodel.LoginScreenViewModel
 import javax.inject.Inject
 import kotlin.properties.Delegates
@@ -18,7 +15,7 @@ import kotlin.random.Random
 
 @HiltViewModel
 class LoginScreenViewModelImpl @Inject constructor(
-    private val repositoryImpl: AuthRepositoryImpl
+    private val authUseCase: AuthUseCaseImpl
 ) : LoginScreenViewModel, ViewModel() {
 
     override val messageLiveData = MutableLiveData<Int>()
@@ -35,8 +32,7 @@ class LoginScreenViewModelImpl @Inject constructor(
 
     override fun btnLogin(userData: User){
         viewModelScope.launch {
-            repositoryImpl.login(userData).last()
-            when()
+
         }
     }
 
