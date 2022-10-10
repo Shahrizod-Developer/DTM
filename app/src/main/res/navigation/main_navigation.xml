@@ -16,7 +16,11 @@
     <fragment
         android:id="@+id/newsScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.news.NewsScreen"
-        android:label="NewsScreen" />
+        android:label="NewsScreen" >
+        <action
+            android:id="@+id/action_newsScreen_to_newsInfoScreen"
+            app:destination="@id/newsInfoScreen" />
+    </fragment>
     <fragment
         android:id="@+id/profileScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.profile.ProfileScreen"
@@ -52,5 +56,9 @@
             android:id="@+id/action_registrationScreen_to_verificationScreen"
             app:destination="@id/verificationScreen" />
     </fragment>
+    <fragment
+        android:id="@+id/newsInfoScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.news.info.NewsInfoScreen"
+        android:label="NewsInfoScreen" />
 
 </navigation>

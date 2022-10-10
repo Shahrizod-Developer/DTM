@@ -19,26 +19,25 @@ import uz.gita.dtm.presentation.ui.viewmodel.impl.NewsViewModelImpl
 
 @AndroidEntryPoint
 class NewsScreen : Fragment(R.layout.screen_news) {
-    private val viewBinding:ScreenNewsBinding by viewBinding(ScreenNewsBinding::bind)
-    private val viewModel:NewsViewModel by viewModels<NewsViewModelImpl>()
-    private val adapter:NewsAdapter by lazy { NewsAdapter(requireContext()) }
+    private val viewBinding: ScreenNewsBinding by viewBinding(ScreenNewsBinding::bind)
+    private val viewModel: NewsViewModel by viewModels<NewsViewModelImpl>()
+    private val adapter: NewsAdapter by lazy { NewsAdapter(requireContext()) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewBinding.containerNews.adapter = adapter
+        adapter.triggerItemClickListener { viewModel.openInfo() }
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             viewModel.newsFlow.collectLatest {
                 adapter.submitList(it)
             }
         }
 
-//        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.loadingFlow.onEach {
-                Log.d("bbbbb","$it")
-                adapter.triggerLoadingListener {
-                    it
-                }
-            }.launchIn(viewLifecycleOwner.lifecycleScope)
-//        }
+        viewModel.loadingFlow.onEach {
+            Log.d("bbbbb", "$it")
+            adapter.triggerLoadingListener {
+                it
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
 
     }
 }
