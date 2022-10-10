@@ -115,6 +115,12 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
 
     // glide
-    implementation 'com.github.bumptech.glide:glide:4.13.1'
-    kapt 'com.github.bumptech.glide:compiler:4.13.1'
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    kapt 'com.github.bumptech.glide:compiler:4.13.2'
+
+    def lottieVersion = "5.2.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.8'
 }

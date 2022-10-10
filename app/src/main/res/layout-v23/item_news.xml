@@ -31,18 +31,18 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivItem"
-        app:shapeAppearance="@style/CornerCut"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_70sdp"
         android:layout_height="0dp"
         android:layout_margin=".5dp"
+        android:background="@drawable/img"
         android:contentDescription="@null"
         android:elevation="4dp"
-        android:background="@drawable/img"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintBottom_toBottomOf="@id/card"
         app:layout_constraintStart_toStartOf="@id/card"
-        app:layout_constraintTop_toTopOf="@id/card" />
+        app:layout_constraintTop_toTopOf="@id/card"
+        app:shapeAppearance="@style/CornerCut" />
 
     <TextView
         android:id="@+id/tvItemDescription"
@@ -62,8 +62,8 @@
         android:id="@+id/tvItemDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="8dp"
         android:layout_marginEnd="@dimen/_12sdp"
+        android:elevation="8dp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@id/card"
         app:layout_constraintEnd_toEndOf="@id/card"
