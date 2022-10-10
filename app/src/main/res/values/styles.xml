@@ -22,5 +22,19 @@
         <item name="android:textColor">@color/text_color_black</item>
         <item name="boxBackgroundColor">@color/text_color_white</item>
         <item name="hintEnabled">false</item>
+
+
+    </style>
+
+    <style name="CornerCut" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyTopRight">cut</item>
+        <item name="cornerFamilyBottomLeft">cut</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeTopLeft">16%</item>
+        <item name="cornerSizeTopRight">0%</item>
+        <item name="cornerSizeBottomLeft">6%</item>
+        <item name="cornerSizeBottomRight">0%</item>
+
     </style>
 </resources>

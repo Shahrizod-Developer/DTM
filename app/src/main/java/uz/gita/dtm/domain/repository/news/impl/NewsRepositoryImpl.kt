@@ -1,5 +1,6 @@
 package uz.gita.dtm.domain.repository.news.impl
 
+import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
@@ -18,8 +19,9 @@ class NewsRepositoryImpl @Inject constructor() : NewsRepository {
     private val db = Firebase.firestore
 
     override fun getAllNews(): Flow<ResultData<List<News>>> = callbackFlow {
-        val news = db.collection("AAAAA").addSnapshotListener { value, error ->
+        val news = db.collection("news").addSnapshotListener { value, error ->
             val data = value!!.documents.map {
+                Log.d("bbbb","${it.data}++")
                 it.toNews()
             }
             trySend(ResultData.success(data))

@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import uz.gita.dtm.data.models.persondata.Applicant
 import uz.gita.dtm.data.models.persondata.Education
 import uz.gita.dtm.data.models.service.Service
+import uz.gita.dtm.data.utils.ResultData
 import uz.gita.dtm.domain.repository.applicant.ApplicantRepository
 import uz.gita.dtm.domain.usecase.HomeUseCase
 import uz.gita.dtm.presentation.navigation.Navigator
@@ -26,6 +27,7 @@ class HomeViewModelImpl @Inject constructor(
 
 
     override val loading = MutableStateFlow(false)
+    override val message = MutableStateFlow("")
 
     override var serviceList = MutableStateFlow(emptyList<Service>())
 
@@ -33,7 +35,20 @@ class HomeViewModelImpl @Inject constructor(
         viewModelScope.launch {
             loading.emit(true)
             homeUseCase.getServiceList().collectLatest {
-                serviceList.emit(it)
+
+                when (it) {
+                    is ResultData.Error -> {
+                        loading.emit(false)
+                    }
+                    is ResultData.Success -> {
+                        serviceList.emit(it.data)
+                        loading.emit(false)
+                    }
+                    is ResultData.Message -> {
+                        message.emit(it.message.toString())
+                    }
+                }
+
             }
         }
     }

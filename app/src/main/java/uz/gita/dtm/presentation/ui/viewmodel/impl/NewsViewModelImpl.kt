@@ -3,9 +3,9 @@ package uz.gita.dtm.presentation.ui.viewmodel.impl
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import uz.gita.dtm.data.models.news.News
@@ -20,14 +20,29 @@ class NewsViewModelImpl @Inject constructor(
     private val newsUseCase: NewsUseCase,
     private val navigator: Navigator
 ) : NewsViewModel, ViewModel() {
-    override val newsFlow: MutableSharedFlow<ResultData<List<News>>>  = MutableSharedFlow()
+    override val newsFlow: MutableSharedFlow<List<News>> = MutableSharedFlow(replay = 1, onBufferOverflow = BufferOverflow.DROP_LATEST)
+    override val loadingFlow: MutableSharedFlow<Boolean> = MutableSharedFlow(replay = 1, onBufferOverflow = BufferOverflow.DROP_LATEST)
+    override val error: MutableSharedFlow<Boolean> = MutableSharedFlow()
+    override val message: MutableSharedFlow<String> = MutableSharedFlow()
 
     init {
         viewModelScope.launch {
             newsUseCase.getAllNews().collectLatest {
-                    newsFlow.emit(it)
+                loadingFlow.emit(true)
+                when (it) {
+                    is ResultData.Success -> {
+                        newsFlow.emit(it.data)
+                        loadingFlow.emit(false)
+                    }
+                    is ResultData.Error -> {
+                        error.emit(true)
+                    }
+
+                    is ResultData.Message -> {
+                        message.emit(it.message.toString())
+                    }
                 }
-//            newsFlow.
             }
         }
+    }
 }

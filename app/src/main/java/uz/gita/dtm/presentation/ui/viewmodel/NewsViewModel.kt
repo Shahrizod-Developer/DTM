@@ -5,6 +5,9 @@ import uz.gita.dtm.data.models.news.News
 import uz.gita.dtm.data.utils.ResultData
 
 interface NewsViewModel {
-    val newsFlow: Flow<ResultData<List<News>>>
+    val newsFlow: Flow<List<News>>
+    val loadingFlow: Flow<Boolean>
+    val error:Flow<Boolean>//to show place holder maybe
+    val message:Flow<String>
 
 }
