@@ -10,9 +10,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
 import uz.gita.dtm.R
 import uz.gita.dtm.data.models.news.News
 import uz.gita.dtm.databinding.ItemNewsBinding
+import java.lang.Exception
 import java.text.SimpleDateFormat
 
 
@@ -53,12 +56,19 @@ class NewsAdapter(private val context: Context) :
             binding.tvItemDate.text = date
             binding.tvItemDescription.text = item.desc
 
+            Picasso
+                .get()
+                .load(getItem(absoluteAdapterPosition).image)
+                .into(binding.ivItem, object : Callback {
+                    override fun onSuccess() {
+                        binding.lottieLoading.visibility = View.GONE
+                    }
 
-            Glide.with(context)
-                .load(item.image)
-                .centerCrop()
-                .placeholder(R.drawable.ic_launcher_background)
-                .into(binding.ivItem)
+                    override fun onError(e: Exception?) {
+                        binding.lottieLoading.visibility = View.GONE
+                        binding.ivItem.setImageResource(R.drawable.bachelor_cap_svgrepo_com)
+                    }
+                })
         }
 
         init {
@@ -69,7 +79,7 @@ class NewsAdapter(private val context: Context) :
                 Log.d("bbbb", "${loadingListener?.invoke()!!} from A")
                 binding.lottieLoading.visibility = View.VISIBLE
             } else {
-                Log.d("bbbb","${loadingListener?.invoke()!!} from A")
+                Log.d("bbbb", "${loadingListener?.invoke()!!} from A")
                 binding.lottieLoading.visibility = View.GONE
             }
         }

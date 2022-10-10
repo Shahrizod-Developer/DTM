@@ -23,10 +23,6 @@ class ProfileScreen : Fragment(R.layout.screen_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         viewBinding.btnLogin.setOnClickListener {
-//            val navBuilder = NavOptions.Builder()
-//            NavHostFragment.findNavController(this@ProfileScreen)
-//                .navigate(R.id.action_profileScreen_to_loginScreen, null, navBuilder.build())
-
             findNavController().navigate(ProfileScreenDirections.actionProfileScreenToLoginScreen())
         }
     }
