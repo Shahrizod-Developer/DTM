@@ -1,33 +1,20 @@
 package uz.gita.dtm.presentation.ui.screen.fragment.auth
 
-import androidx.lifecycle.ViewModelProvider
-import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.dtm.R
+import uz.gita.dtm.databinding.ScreenRegistrationBinding
 import uz.gita.dtm.presentation.ui.viewmodel.RegistrationScreenViewModel
+import uz.gita.dtm.presentation.ui.viewmodel.impl.RegistrationScreenViewModelImpl
 
-class RegistrationScreen : Fragment() {
+@AndroidEntryPoint
+class RegistrationScreen : Fragment(R.layout.screen_registration) {
 
-    companion object {
-        fun newInstance() = RegistrationScreen()
-    }
-
-    private lateinit var viewModel: RegistrationScreenViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.screen_registration, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(RegistrationScreenViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+    private val binding: ScreenRegistrationBinding by viewBinding(ScreenRegistrationBinding::bind)
+    private val viewModel: RegistrationScreenViewModel by viewModels<RegistrationScreenViewModelImpl>()
+    private val navigation by lazy { findNavController() }
 
 }

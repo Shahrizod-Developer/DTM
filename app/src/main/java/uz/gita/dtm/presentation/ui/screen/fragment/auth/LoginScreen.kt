@@ -23,17 +23,30 @@ class LoginScreen : Fragment(R.layout.screen_login) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        viewModel.openRegistrationScreen.observe(this) {
+            navigation.navigate(LoginScreenDirections.actionLoginScreenToRegistrationScreen())
+        }
+        viewModel.btnBackLiveData.observe(this) {
+            navigation.popBackStack()
+        }
+        viewModel.openVerificationScreen.observe(this) {
+            navigation.navigate(LoginScreenDirections.actionLoginScreenToVerificationScreen())
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.recaptchaQuestionLiveData.observe(viewLifecycleOwner) { binding.textRecaptcha.text = it }
+        viewModel.recaptchaQuestionLiveData.observe(viewLifecycleOwner) {
+            binding.textRecaptcha.text = it
+        }
 
+        binding.btnRegister.setOnClickListener {
+            viewModel.openRegistrationScreen()
+        }
         binding.btnLogin.setOnClickListener {
             if (viewModel.checkRecaptcha(binding.inputAnswer.text.toString().toInt())) {
-                Log.d("TTT" ,   binding.inputNumber.text.toString())
-                Log.d("TTT" ,   binding.inputPassword.text.toString())
+                Log.d("TTT", binding.inputNumber.text.toString())
+                Log.d("TTT", binding.inputPassword.text.toString())
                 viewModel.btnLogin(
                     User(
                         binding.inputNumber.text.toString(),
@@ -42,5 +55,7 @@ class LoginScreen : Fragment(R.layout.screen_login) {
                 )
             }
         }
+        binding.btnBack.setOnClickListener { viewModel.btnBack() }
+        binding.btnRestorePassword.setOnClickListener { viewModel.restorePassword() }
     }
 }

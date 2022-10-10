@@ -2,6 +2,6 @@ package uz.gita.dtm.presentation.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 
-class VerificationScreenViewModel : ViewModel() {
+interface VerificationScreenViewModel  {
     // TODO: Implement the ViewModel
 }

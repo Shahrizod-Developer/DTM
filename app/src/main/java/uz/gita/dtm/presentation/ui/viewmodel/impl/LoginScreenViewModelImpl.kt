@@ -4,9 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.last
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import uz.gita.dtm.R
 import uz.gita.dtm.data.models.auth.User
+import uz.gita.dtm.data.utils.ResultData
 import uz.gita.dtm.domain.usecase.impl.AuthUseCaseImpl
 import uz.gita.dtm.presentation.ui.viewmodel.LoginScreenViewModel
 import javax.inject.Inject
@@ -18,11 +20,18 @@ class LoginScreenViewModelImpl @Inject constructor(
     private val authUseCase: AuthUseCaseImpl
 ) : LoginScreenViewModel, ViewModel() {
 
+    override val btnBackLiveData = MutableLiveData<Unit>()
     override val messageLiveData = MutableLiveData<Int>()
     override val openRegistrationScreen = MutableLiveData<Unit>()
+    override val openVerificationScreen = MutableLiveData<Unit>()
     override val messageForPhoneNumber = MutableLiveData<Int>()
     override val messageForPassword = MutableLiveData<Int>()
     override val recaptchaQuestionLiveData = MutableLiveData<String>()
+
+
+    override fun btnBack() {
+        btnBackLiveData.value = Unit
+    }
 
     private var answer by Delegates.notNull<Int>()
 
@@ -30,9 +39,21 @@ class LoginScreenViewModelImpl @Inject constructor(
         recaptchaQuestionLiveData.value = getRecaptcha()
     }
 
-    override fun btnLogin(userData: User){
+    override fun btnLogin(userData: User) {
         viewModelScope.launch {
-
+            authUseCase.login(userData).collectLatest {
+                when (it) {
+                    is ResultData.Error -> {
+//                        messageLiveData.postValue(R.string.app_name)
+                    }
+                    is ResultData.Success -> {
+                        openVerificationScreen.postValue(Unit)
+                    }
+                    is ResultData.Message -> {
+//                        messageLiveData.postValue(R.string.app_name)
+                    }
+                }
+            }
         }
     }
 
@@ -42,6 +63,10 @@ class LoginScreenViewModelImpl @Inject constructor(
 
     override fun checkRecaptcha(value: Int): Boolean {
         return value == answer
+    }
+
+    override fun restorePassword() {
+
     }
 
     private fun getRecaptcha(): String {

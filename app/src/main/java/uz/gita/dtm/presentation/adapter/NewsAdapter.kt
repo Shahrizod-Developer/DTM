@@ -67,10 +67,10 @@ class NewsAdapter(private val context: Context) :
             }
             if (loadingListener?.invoke()!!) {
                 Log.d("bbbb", "${loadingListener?.invoke()!!} from A")
-                binding.lottieLoading.visibility = View.VISIBLE
+//                binding.lottieLoading.visibility = View.VISIBLE
             } else {
                 Log.d("bbbb","${loadingListener?.invoke()!!} from A")
-                binding.lottieLoading.visibility = View.GONE
+//                binding.lottieLoading.visibility = View.GONE
             }
         }
     }
