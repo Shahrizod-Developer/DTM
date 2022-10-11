@@ -27,11 +27,25 @@
             android:id="@+id/action_serviceDetailsScreen_to_loginScreen"
             app:destination="@id/loginScreen"
             app:popUpTo="@id/navigation" />
+        <action
+            android:id="@+id/action_serviceDetailsScreen_to_admissionScreen"
+            app:destination="@id/admissionScreen" />
+        <action
+            android:id="@+id/action_serviceDetailsScreen_to_applicationScreen2"
+            app:destination="@id/applicationScreen2" />
     </fragment>
     <fragment
         android:id="@+id/loginScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.LoginScreen"
         android:label="screen_login"
         tools:layout="@layout/screen_login" />
+    <fragment
+        android:id="@+id/admissionScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.home.AdmissionScreen"
+        android:label="AdmissionScreen" />
+    <fragment
+        android:id="@+id/applicationScreen2"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.application.ApplicationScreen"
+        android:label="ApplicationScreen" />
 
 </navigation>

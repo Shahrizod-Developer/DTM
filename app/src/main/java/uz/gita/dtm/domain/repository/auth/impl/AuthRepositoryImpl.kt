@@ -2,6 +2,7 @@ package uz.gita.dtm.domain.repository.auth.impl
 
 import android.app.Activity
 import android.content.Context
+import android.util.Log
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
@@ -10,8 +11,9 @@ import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.*
 import uz.gita.dtm.data.models.auth.Authentication
 import uz.gita.dtm.data.models.auth.User
 import uz.gita.dtm.data.models.mapper.Mapper.toAuthentication
@@ -30,7 +32,8 @@ class AuthRepositoryImpl @Inject constructor() : AuthRepository {
     private lateinit var mCallbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     private lateinit var mAuth: FirebaseAuth
 
-    override suspend fun sendSmsCode(activity: Activity, phoneNumber: String): Flow<ResultData<Unit>> =
+
+    override fun sendSmsCode(activity: Activity, phoneNumber: String): Flow<ResultData<Unit>> =
         callbackFlow {
             mAuth = Firebase.auth
             mCallbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -60,7 +63,10 @@ class AuthRepositoryImpl @Inject constructor() : AuthRepository {
             )
         }
 
-    override suspend fun verificationSmsCode(context: Context, OTPpassword: String): Flow<ResultData<Unit>> = callbackFlow {
+    override fun verificationSmsCode(
+        context: Context,
+        OTPpassword: String
+    ): Flow<ResultData<Unit>> = callbackFlow {
         val credential =
             PhoneAuthProvider.getCredential(MySharedPreference.verificationId, OTPpassword)
         Firebase.auth.signInWithCredential(credential)
@@ -82,7 +88,7 @@ class AuthRepositoryImpl @Inject constructor() : AuthRepository {
             }
     }
 
-    override suspend fun login(user: User): Flow<ResultData<Unit>> = callbackFlow {
+    override fun login(user: User): Flow<ResultData<Unit>> = callbackFlow {
 
         val docRef = db.collection("authentication").document(user.phoneNumber)
         docRef.get().addOnSuccessListener { document ->
@@ -97,6 +103,14 @@ class AuthRepositoryImpl @Inject constructor() : AuthRepository {
             }
         }.addOnFailureListener { eror ->
             trySend(ResultData.error(eror))
+        }
+    }
+
+    override fun userPresence(): Flow<Boolean> = flow {
+        if (MySharedPreference.verificationId.isNotEmpty()) {
+            emit(true)
+        } else {
+            emit(false)
         }
     }
 }

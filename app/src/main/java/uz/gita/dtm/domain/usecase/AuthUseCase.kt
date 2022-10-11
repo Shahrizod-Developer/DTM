@@ -8,7 +8,9 @@ import uz.gita.dtm.data.utils.ResultData
 
 
 interface AuthUseCase {
-    suspend fun sendSmsCode(activity: Activity, phoneNumber: String): Flow<ResultData<Unit>>
-    suspend fun verificationSmsCode(context: Context, password: String): Flow<ResultData<Unit>>
-    suspend fun login(user: User): Flow<ResultData<Unit>>
+    fun sendSmsCode(activity: Activity, phoneNumber: String): Flow<ResultData<Unit>>
+    fun verificationSmsCode(context: Context, password: String): Flow<ResultData<Unit>>
+    fun login(user: User): Flow<ResultData<Unit>>
+    fun userPresence(): Flow<Boolean>
+
 }

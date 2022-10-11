@@ -7,7 +7,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import uz.gita.dtm.domain.usecase.AuthUseCase
 import uz.gita.dtm.presentation.navigation.Navigator
 import uz.gita.dtm.presentation.ui.screen.fragment.main.home.ServiceDetailsScreenDirections
 import uz.gita.dtm.presentation.ui.viewmodel.ServiceDetailsViewModel
@@ -15,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ServiceDetailsViewModelImpl @Inject constructor(
-    private val navigator: Navigator
+    private val navigator: Navigator, private val authUseCase: AuthUseCase
 ) : ServiceDetailsViewModel, ViewModel() {
 
     override val showUseServiceDialogFlow = MutableSharedFlow<Boolean>()
@@ -34,7 +36,7 @@ class ServiceDetailsViewModelImpl @Inject constructor(
         }
     }
 
-    override fun showUseServiceDialog() {
+    private fun showUseServiceDialog() {
         viewModelScope.launch {
             showUseServiceDialogFlow.emit(true)
         }
@@ -49,6 +51,30 @@ class ServiceDetailsViewModelImpl @Inject constructor(
     override fun showApplicationDialog() {
         viewModelScope.launch {
             showApplicationDialogFlow.emit(true)
+        }
+    }
+
+    override fun openAdmissionScreen() {
+        viewModelScope.launch {
+            navigator.navigateTo(ServiceDetailsScreenDirections.actionServiceDetailsScreenToAdmissionScreen())
+        }
+    }
+
+    override fun openApplicationScreen() {
+        viewModelScope.launch {
+            navigator.navigateTo(ServiceDetailsScreenDirections.actionServiceDetailsScreenToApplicationScreen2())
+        }
+    }
+
+    override fun onCLickUseService() {
+        viewModelScope.launch {
+            authUseCase.userPresence().onEach {
+                if (it) {
+                    openAdmissionScreen()
+                } else {
+                    showUseServiceDialog()
+                }
+            }
         }
     }
 }

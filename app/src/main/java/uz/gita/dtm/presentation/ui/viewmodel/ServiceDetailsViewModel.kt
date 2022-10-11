@@ -10,7 +10,9 @@ interface ServiceDetailsViewModel {
 
     fun openLoginScreen()
     fun back()
-    fun showUseServiceDialog()
     fun showAboutServiceDialog()
     fun showApplicationDialog()
+    fun openAdmissionScreen()
+    fun openApplicationScreen()
+    fun onCLickUseService()
 }

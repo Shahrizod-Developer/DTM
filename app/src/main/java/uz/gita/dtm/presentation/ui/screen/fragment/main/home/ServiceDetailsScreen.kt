@@ -37,7 +37,7 @@ class ServiceDetailsScreen : Fragment(R.layout.screen_service_detail) {
         binding.title.text = args.service.title
 
         binding.useService.setOnClickListener {
-            viewModel.showUseServiceDialog()
+            viewModel.onCLickUseService()
         }
         binding.aboutService.setOnClickListener {
             viewModel.showAboutServiceDialog()
