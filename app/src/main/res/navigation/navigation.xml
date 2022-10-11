@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_mainScreen_to_newsScreen"
             app:destination="@id/newsScreen" />
+        <action
+            android:id="@+id/action_mainScreen_to_newsInfoScreen"
+            app:destination="@id/newsInfoScreen" />
     </fragment>
     <fragment
         android:id="@+id/serviceDetailsScreen"
