@@ -24,26 +24,26 @@ class MainScreen : Fragment(R.layout.screen_main) {
             requireActivity().findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
 
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.loginScreen -> hideBottomNav()
-                R.id.applicationScreen -> {
-                    timer.cancel()
-                }
-                R.id.newsScreen -> {
-                    timer.cancel()
-                }
-                else -> showBottomNav()
-            }
-        }
+//        navController.addOnDestinationChangedListener { _, destination, _ ->
+//            when (destination.id) {
+//                R.id.loginScreen -> hideBottomNav()
+//                R.id.applicationScreen -> {
+//                    timer.cancel()
+//                }
+//                R.id.newsScreen -> {
+//                    timer.cancel()
+//                }
+//                else -> showBottomNav()
+//            }
+//        }
     }
 
-    private fun showBottomNav() {
-        binding.navView.visibility = View.VISIBLE
-
-    }
-
-    private fun hideBottomNav() {
-        binding.navView.visibility = View.GONE
-    }
+//    private fun showBottomNav() {
+//        binding.navView.visibility = View.VISIBLE
+//
+//    }
+//
+//    private fun hideBottomNav() {
+//        binding.navView.visibility = View.GONE
+//    }
 }

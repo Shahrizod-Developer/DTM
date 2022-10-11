@@ -32,7 +32,7 @@ class NewsScreen : Fragment(R.layout.screen_news) {
             bundle.putSerializable("NEWS",it)
 //            findNavController().navigate(NewsScreenDirections.actionNewsScreenToNewsInfoScreen())
 //            viewModel.openInfo()
-            findNavController().navigate(R.id.action_newsScreen_to_newsInfoScreen, bundle)
+//            findNavController().navigate(R.id.action_mainScreen_to_serviceDetailsScreen, bundle)
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {

@@ -23,15 +23,15 @@ class LoginScreen : Fragment(R.layout.screen_login) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.openRegistrationScreen.observe(this) {
-            navigation.navigate(LoginScreenDirections.actionLoginScreenToRegistrationScreen())
-        }
-        viewModel.btnBackLiveData.observe(this) {
-            navigation.popBackStack()
-        }
-        viewModel.openVerificationScreen.observe(this) {
-            navigation.navigate(LoginScreenDirections.actionLoginScreenToVerificationScreen())
-        }
+//        viewModel.openRegistrationScreen.observe(this) {
+//            navigation.navigate(LoginScreenDirections.actionLoginScreenToRegistrationScreen())
+//        }
+//        viewModel.btnBackLiveData.observe(this) {
+//            navigation.popBackStack()
+//        }
+//        viewModel.openVerificationScreen.observe(this) {
+//            navigation.navigate(LoginScreenDirections.actionLoginScreenToVerificationScreen())
+//        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
