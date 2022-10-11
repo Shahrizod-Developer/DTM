@@ -28,11 +28,7 @@ class NewsScreen : Fragment(R.layout.screen_news) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewBinding.containerNews.adapter = adapter
         adapter.triggerItemClickListener {
-//            val bundle = Bundle()
-//            bundle.putSerializable("NEWS",it)
-//            findNavController().navigate(NewsScreenDirections.actionNewsScreenToNewsInfoScreen())
-            viewModel.openInfo()
-//            findNavController().navigate(R.id.action_mainScreen_to_serviceDetailsScreen, bundle)
+            viewModel.openInfo(it)
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {

@@ -28,8 +28,8 @@ class NewsViewModelImpl @Inject constructor(
     override val error: MutableSharedFlow<Boolean> = MutableSharedFlow()
     override val message: MutableSharedFlow<String> = MutableSharedFlow()
 
-    override fun openInfo() {
-        viewModelScope.launch { navigator.navigateTo(MainScreenDirections.actionMainScreenToNewsInfoScreen()) }
+    override fun openInfo(newsData:News) {
+        viewModelScope.launch { navigator.navigateTo(MainScreenDirections.actionMainScreenToNewsInfoScreen(newsData)) }
     }
 
     init {
@@ -41,6 +41,7 @@ class NewsViewModelImpl @Inject constructor(
                         newsFlow.emit(it.data)
                         loadingFlow.emit(false)
                     }
+
                     is ResultData.Error -> {
                         error.emit(true)
                     }

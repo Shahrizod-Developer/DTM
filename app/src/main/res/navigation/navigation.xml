@@ -66,6 +66,10 @@
         tools:layout="@layout/screen_news_info"
         android:id="@+id/newsInfoScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.news.info.NewsInfoScreen"
-        android:label="NewsInfoScreen" />
+        android:label="NewsInfoScreen" >
+        <argument
+            android:name="NewsData"
+            app:argType="uz.gita.dtm.data.models.news.News" />
+    </fragment>
 
 </navigation>
