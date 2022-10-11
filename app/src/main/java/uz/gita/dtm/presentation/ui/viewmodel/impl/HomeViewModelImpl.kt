@@ -15,6 +15,7 @@ import uz.gita.dtm.data.utils.ResultData
 import uz.gita.dtm.domain.repository.applicant.ApplicantRepository
 import uz.gita.dtm.domain.usecase.HomeUseCase
 import uz.gita.dtm.presentation.navigation.Navigator
+import uz.gita.dtm.presentation.ui.screen.fragment.main.MainScreenDirections
 import uz.gita.dtm.presentation.ui.viewmodel.HomeViewModel
 import javax.inject.Inject
 
@@ -54,4 +55,14 @@ class HomeViewModelImpl @Inject constructor(
     }
 
     override suspend fun add(applicant: Education) = applicantRepository.addEducation(applicant)
+
+    override fun openServiceDetail(service: Service) {
+        viewModelScope.launch {
+            navigator.navigateTo(
+                MainScreenDirections.actionMainScreenToServiceDetailsScreen(
+                    service
+                )
+            )
+        }
+    }
 }

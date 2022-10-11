@@ -4,6 +4,13 @@
     <string name="cancel_bottom_dialog">cancel bottom dialog</string>
     <string name="ruxsatnomani_olish">Ruxsatnomani olish</string>
     <string name="yangiliklar">Yangiliklar</string>
+    <string name="abot_service">Xizmat haqida</string>
+    <string name="service_application">Xizmat bo\'yicha arizilarim</string>
+
+    <string name="temp_text">"asd asd asd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhf as,dhf jad,\nshf asdhf ajsdhf a jsdhf ajhsd fjash dfjahsd fajhsd fajhds fajshdf as,dfh asjdhf ashdf ahjsd fahjs dfha,sd fhjasd fajsd fasdjh f,shadjf ajsdh \n\nfajsdhf asjdhf ajsdhf asjdhf asjdh <b>fasjdhf asljdhf asjdhf adsjh</b>></string>
+    <string name="dtm">DTM</string>
+    <string name="enter">Kirish</string>
+
     <string name="no_send_sms">SMS jo\'natilmadi</string>
     <string name="wrong_login">login yoki parol xato</string>
     <string name="no_number">raqam topilmadi</string>

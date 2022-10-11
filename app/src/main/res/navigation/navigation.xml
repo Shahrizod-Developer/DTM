@@ -10,6 +10,66 @@
         android:id="@+id/mainScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.MainScreen"
         android:label="MainScreen"
-        tools:layout="@layout/screen_main" />
+        tools:layout="@layout/screen_main">
+        <action
+            android:id="@+id/action_mainScreen_to_serviceDetailsScreen"
+            app:destination="@id/serviceDetailsScreen" />
+        <action
+            android:id="@+id/action_mainScreen_to_newsScreen"
+            app:destination="@id/newsScreen" />
+        <action
+            android:id="@+id/action_mainScreen_to_newsInfoScreen"
+            app:destination="@id/newsInfoScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/serviceDetailsScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.home.ServiceDetailsScreen"
+        android:label="ServiceDetailsScreen">
+
+        <argument
+            android:name="service"
+            app:argType="uz.gita.dtm.data.models.service.Service" />
+        <action
+            android:id="@+id/action_serviceDetailsScreen_to_loginScreen"
+            app:destination="@id/loginScreen"
+            app:popUpTo="@id/navigation" />
+        <action
+            android:id="@+id/action_serviceDetailsScreen_to_admissionScreen"
+            app:destination="@id/admissionScreen" />
+        <action
+            android:id="@+id/action_serviceDetailsScreen_to_applicationScreen2"
+            app:destination="@id/applicationScreen2" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.LoginScreen"
+        android:label="screen_login"
+        tools:layout="@layout/screen_login" />
+    <fragment
+        android:id="@+id/admissionScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.home.AdmissionScreen"
+        android:label="AdmissionScreen" />
+    <fragment
+        android:id="@+id/applicationScreen2"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.application.ApplicationScreen"
+        android:label="ApplicationScreen" />
+    <fragment
+        tools:layout="@layout/screen_news"
+        android:id="@+id/newsScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.news.NewsScreen"
+        android:label="NewsScreen" >
+        <action
+            android:id="@+id/action_newsScreen_to_newsInfoScreen"
+            app:destination="@id/newsInfoScreen" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/screen_news_info"
+        android:id="@+id/newsInfoScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.news.info.NewsInfoScreen"
+        android:label="NewsInfoScreen" >
+        <argument
+            android:name="NewsData"
+            app:argType="uz.gita.dtm.data.models.news.News" />
+    </fragment>
 
 </navigation>

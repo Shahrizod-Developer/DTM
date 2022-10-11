@@ -10,4 +10,6 @@ interface NewsViewModel {
     val error:Flow<Boolean>//to show place holder maybe
     val message:Flow<String>
 
+    fun openInfo(newsData:News)
+
 }

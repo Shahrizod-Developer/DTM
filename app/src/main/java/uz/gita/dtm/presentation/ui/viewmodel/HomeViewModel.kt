@@ -12,4 +12,6 @@ interface HomeViewModel {
     val message: Flow<String>
 
     suspend fun add(applicant: Education)
+
+    fun openServiceDetail(service: Service)
 }

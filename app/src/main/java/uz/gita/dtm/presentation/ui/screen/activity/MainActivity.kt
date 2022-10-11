@@ -27,6 +27,5 @@ class MainActivity : AppCompatActivity() {
             .onEach {
                 it.invoke(navHostFragment.findNavController())
             }.launchIn(lifecycleScope)
-
     }
 }
