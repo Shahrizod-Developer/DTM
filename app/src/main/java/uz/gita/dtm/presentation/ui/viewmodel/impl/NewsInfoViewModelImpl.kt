@@ -9,7 +9,7 @@ import uz.gita.dtm.presentation.ui.viewmodel.ScreenNewsInfoViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ScreenNewsInfoViewModelImpl @Inject constructor(
+class NewsInfoViewModelImpl @Inject constructor(
     private val navigator:Navigator
 ): ScreenNewsInfoViewModel, ViewModel() {
 

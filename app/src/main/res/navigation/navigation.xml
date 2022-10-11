@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_mainScreen_to_serviceDetailsScreen"
             app:destination="@id/serviceDetailsScreen" />
+        <action
+            android:id="@+id/action_mainScreen_to_newsScreen"
+            app:destination="@id/newsScreen" />
     </fragment>
     <fragment
         android:id="@+id/serviceDetailsScreen"
@@ -47,5 +50,19 @@
         android:id="@+id/applicationScreen2"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.application.ApplicationScreen"
         android:label="ApplicationScreen" />
+    <fragment
+        tools:layout="@layout/screen_news"
+        android:id="@+id/newsScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.news.NewsScreen"
+        android:label="NewsScreen" >
+        <action
+            android:id="@+id/action_newsScreen_to_newsInfoScreen"
+            app:destination="@id/newsInfoScreen" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/screen_news_info"
+        android:id="@+id/newsInfoScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.news.info.NewsInfoScreen"
+        android:label="NewsInfoScreen" />
 
 </navigation>
