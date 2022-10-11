@@ -35,14 +35,26 @@
             android:id="@+id/action_loginScreen_to_registrationScreen"
             app:destination="@id/registrationScreen" />
         <action
-            android:id="@+id/action_loginScreen_to_verificationScreen"
-            app:destination="@id/verificationScreen" />
+            android:id="@+id/action_loginScreen_to_restorePasswordScreen"
+            app:destination="@id/restorePasswordScreen" />
+        <action
+            android:id="@+id/action_loginScreen_to_homeScreen"
+            app:destination="@id/homeScreen" />
     </fragment>
     <fragment
         android:id="@+id/verificationScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.VerificationScreen"
         android:label="screen_verification"
-        tools:layout="@layout/screen_verification" />
+        tools:layout="@layout/screen_verification">
+        <action
+            android:id="@+id/action_verificationScreen_to_registrationScreen"
+            app:destination="@id/registrationScreen" />
+        <action
+            android:id="@+id/action_verificationScreen_to_homeScreen"
+            app:destination="@id/homeScreen"
+            app:popUpTo="@id/main_navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/registrationScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.RegistrationScreen"
@@ -50,7 +62,20 @@
         tools:layout="@layout/screen_registration">
         <action
             android:id="@+id/action_registrationScreen_to_verificationScreen"
-            app:destination="@id/verificationScreen" />
+            app:destination="@id/verificationScreen"
+            app:popUpTo="@id/loginScreen"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/restorePasswordScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.RestorePasswordScreen"
+        android:label="screen_restore_password"
+        tools:layout="@layout/screen_restore_password">
+        <action
+            android:id="@+id/action_restorePasswordScreen_to_verificationScreen"
+            app:destination="@id/verificationScreen"
+            app:popUpTo="@id/profileScreen"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>

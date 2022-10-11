@@ -1,8 +1,8 @@
 package uz.gita.dtm.presentation.ui.screen.fragment.auth
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -29,8 +29,14 @@ class LoginScreen : Fragment(R.layout.screen_login) {
         viewModel.btnBackLiveData.observe(this) {
             navigation.popBackStack()
         }
-        viewModel.openVerificationScreen.observe(this) {
-            navigation.navigate(LoginScreenDirections.actionLoginScreenToVerificationScreen())
+        viewModel.messageForPhoneNumber.observe(this) {
+            Toast.makeText(requireContext(), getString(it), Toast.LENGTH_SHORT).show()
+        }
+        viewModel.messageForPassword.observe(this) {
+            Toast.makeText(requireContext(), getString(it), Toast.LENGTH_SHORT).show()
+        }
+        viewModel.openMainScreen.observe(this) {
+            Toast.makeText(requireContext(), "TIZIMGA KIRILDI", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -44,15 +50,15 @@ class LoginScreen : Fragment(R.layout.screen_login) {
             viewModel.openRegistrationScreen()
         }
         binding.btnLogin.setOnClickListener {
-            if (viewModel.checkRecaptcha(binding.inputAnswer.text.toString().toInt())) {
-                Log.d("TTT", binding.inputNumber.text.toString())
-                Log.d("TTT", binding.inputPassword.text.toString())
+            if (viewModel.checkRecaptcha(binding.inputAnswer.text.toString())) {
                 viewModel.btnLogin(
                     User(
                         binding.inputNumber.text.toString(),
                         binding.inputPassword.text.toString()
                     )
                 )
+            } else {
+                Toast.makeText(requireContext(), R.string.recaptcha, Toast.LENGTH_SHORT).show()
             }
         }
         binding.btnBack.setOnClickListener { viewModel.btnBack() }

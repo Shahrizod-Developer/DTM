@@ -1,5 +1,6 @@
 package uz.gita.dtm.presentation.ui.viewmodel.impl
 
+import android.app.Activity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,29 +9,23 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import uz.gita.dtm.R
 import uz.gita.dtm.data.models.auth.User
+import uz.gita.dtm.data.shp.MySharedPreference
 import uz.gita.dtm.data.utils.ResultData
 import uz.gita.dtm.domain.usecase.impl.AuthUseCaseImpl
-import uz.gita.dtm.presentation.ui.viewmodel.LoginScreenViewModel
+import uz.gita.dtm.presentation.ui.viewmodel.RestorePasswordScreenViewModel
 import javax.inject.Inject
 import kotlin.random.Random
 
 @HiltViewModel
-class LoginScreenViewModelImpl @Inject constructor(
-    private val authUseCase: AuthUseCaseImpl
-) : LoginScreenViewModel, ViewModel() {
-
+class RestorePasswordScreenViewModelImpl @Inject constructor(
+    private val useCase: AuthUseCaseImpl
+) : RestorePasswordScreenViewModel, ViewModel() {
     override val btnBackLiveData = MutableLiveData<Unit>()
     override val messageLiveData = MutableLiveData<Int>()
-    override val openRegistrationScreen = MutableLiveData<Unit>()
-    override val openMainScreen = MutableLiveData<Unit>()
+    override val openVerificationScreen = MutableLiveData<Unit>()
     override val messageForPhoneNumber = MutableLiveData<Int>()
     override val messageForPassword = MutableLiveData<Int>()
     override val recaptchaQuestionLiveData = MutableLiveData<String>()
-
-
-    override fun btnBack() {
-        btnBackLiveData.value = Unit
-    }
 
     private var answer = ""
 
@@ -38,7 +33,13 @@ class LoginScreenViewModelImpl @Inject constructor(
         recaptchaQuestionLiveData.value = getRecaptcha()
     }
 
-    override fun btnLogin(userData: User) {
+    override fun btnBack() {
+        btnBackLiveData.value = Unit
+    }
+
+    override fun btnLogin(activity: Activity, userData: User) {
+        MySharedPreference.password = userData.password
+        MySharedPreference.phoneNumber = userData.phoneNumber
         if (userData.phoneNumber.isEmpty()) {
             messageForPhoneNumber.value = R.string.no_number
         }
@@ -46,33 +47,35 @@ class LoginScreenViewModelImpl @Inject constructor(
             messageForPassword.value = R.string.no_password
         } else {
             viewModelScope.launch {
-                authUseCase.login(userData).collectLatest {
+                useCase.restorePassword(userData.phoneNumber).collectLatest {
                     when (it) {
-                        is ResultData.Error -> {
-                            messageLiveData.value = R.string.app_name
-                        }
                         is ResultData.Success -> {
-                            openMainScreen.value = Unit
+                            useCase.sendSmsCode(activity, userData.phoneNumber).collectLatest {
+                                when (it) {
+                                    is ResultData.Success -> {
+                                        useCase.setNewPassword(userData.password).collectLatest {
+                                            when (it) {
+                                                is ResultData.Success -> {}
+                                                is ResultData.Message -> {}
+                                                is ResultData.Error -> {}
+                                            }
+                                        }
+                                    }
+                                    is ResultData.Message -> {}
+                                    is ResultData.Error -> {}
+                                }
+                            }
                         }
-                        is ResultData.Message -> {
-                            messageLiveData.value = R.string.app_name
-                        }
+                        is ResultData.Message -> {}
+                        is ResultData.Error -> {}
                     }
                 }
             }
         }
     }
 
-    override fun openRegistrationScreen() {
-        openRegistrationScreen.value = Unit
-    }
-
     override fun checkRecaptcha(value: String): Boolean {
-        return value == answer
-    }
-
-    override fun restorePassword() {
-
+        return answer == value
     }
 
     private fun getRecaptcha(): String {

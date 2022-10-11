@@ -4,4 +4,10 @@
     <string name="cancel_bottom_dialog">cancel bottom dialog</string>
     <string name="ruxsatnomani_olish">Ruxsatnomani olish</string>
     <string name="yangiliklar">Yangiliklar</string>
+    <string name="no_send_sms">SMS jo\'natilmadi</string>
+    <string name="wrong_login">login yoki parol xato</string>
+    <string name="no_number">raqam topilmadi</string>
+    <string name="no_password">Erorrpassword</string>
+    <string name="recaptcha">Misol ishlanmagan</string>
+    <string name="text1">Oldin ro\'yxatdan o\'tgan</string>
 </resources>

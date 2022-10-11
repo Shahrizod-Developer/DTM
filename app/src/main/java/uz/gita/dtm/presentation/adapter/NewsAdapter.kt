@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.bumptech.glide.Glide
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import uz.gita.dtm.R
@@ -61,11 +60,11 @@ class NewsAdapter(private val context: Context) :
                 .load(getItem(absoluteAdapterPosition).image)
                 .into(binding.ivItem, object : Callback {
                     override fun onSuccess() {
-//                        binding.lottieLoading.visibility = View.GONE
+                        binding.lottieLoading.visibility = View.GONE
                     }
 
                     override fun onError(e: Exception?) {
-//                        binding.lottieLoading.visibility = View.GONE
+                        binding.lottieLoading.visibility = View.GONE
                         binding.ivItem.setImageResource(R.drawable.bachelor_cap_svgrepo_com)
                     }
                 })

@@ -17,4 +17,9 @@ class AuthUseCaseImpl @Inject constructor(
         repository.verificationSmsCode(context, password)
 
     override suspend fun login(user: User) = repository.login(user)
+
+    override suspend fun restorePassword(phoneNumber: String) =
+        repository.restorePassword(phoneNumber)
+
+    override suspend fun setNewPassword(password: String) = repository.setNewPassword(password)
 }

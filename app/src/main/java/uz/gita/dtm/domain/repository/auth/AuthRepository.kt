@@ -11,5 +11,6 @@ interface AuthRepository {
     suspend fun sendSmsCode(activity: Activity, phoneNumber: String): Flow<ResultData<Unit>>
     suspend fun verificationSmsCode(context: Context, password: String): Flow<ResultData<Unit>>
     suspend fun login(user: User): Flow<ResultData<Unit>>
-
+    suspend fun restorePassword(phoneNumber: String): Flow<ResultData<Unit>>
+    suspend fun setNewPassword(password: String): Flow<ResultData<Unit>>
 }
