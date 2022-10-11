@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/enterPinCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:text="Pin Kod Kiriting"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/dial1"
+        android:layout_width="@dimen/_16sdp"
+        android:layout_height="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@id/dial2"
+        app:cardCornerRadius="@dimen/_50sdp"
+        app:layout_constraintStart_toStartOf="@id/enterPinCode"
+        app:layout_constraintTop_toBottomOf="@id/enterPinCode"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/dial2"
+        android:layout_width="@dimen/_16sdp"
+        android:layout_height="@dimen/_16sdp"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@id/dial3"
+        app:cardCornerRadius="@dimen/_50sdp"
+        app:layout_constraintStart_toEndOf="@id/dial1"
+        app:layout_constraintTop_toTopOf="@id/dial1"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/dial3"
+        android:layout_width="@dimen/_16sdp"
+        android:layout_height="@dimen/_16sdp"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@id/dial4"
+        app:cardCornerRadius="@dimen/_50sdp"
+        app:layout_constraintStart_toEndOf="@id/dial2"
+        app:layout_constraintTop_toTopOf="@id/dial2"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/dial4"
+        android:layout_width="@dimen/_16sdp"
+        android:layout_height="@dimen/_16sdp"
+        app:layout_constraintEnd_toEndOf="@id/enterPinCode"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/_50sdp"
+        app:layout_constraintStart_toEndOf="@id/dial3"
+        app:layout_constraintTop_toTopOf="@id/dial3"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+
+    <View
+        android:id="@+id/numBackground1"
+        app:layout_constraintBottom_toTopOf="@id/numBackground4"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:background="@drawable/pin_bg"
+        app:layout_constraintEnd_toStartOf="@id/numBackground2"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dial1" />
+
+    <TextView
+        android:id="@+id/num1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_32sdp"
+        app:layout_constraintBottom_toBottomOf="@id/numBackground1"
+        app:layout_constraintEnd_toEndOf="@id/numBackground1"
+        app:layout_constraintStart_toStartOf="@id/numBackground1"
+        app:layout_constraintTop_toTopOf="@id/numBackground1" />
+
+    <View
+        android:id="@+id/numBackground2"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:background="@drawable/pin_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/numBackground1"
+        app:layout_constraintEnd_toStartOf="@id/numBackground3"
+        app:layout_constraintStart_toEndOf="@id/numBackground1"
+        app:layout_constraintTop_toTopOf="@+id/numBackground1" />
+
+    <TextView
+        android:id="@+id/num2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_32sdp"
+        app:layout_constraintBottom_toBottomOf="@id/numBackground2"
+        app:layout_constraintEnd_toEndOf="@id/numBackground2"
+        app:layout_constraintStart_toStartOf="@id/numBackground2"
+        app:layout_constraintTop_toTopOf="@id/numBackground2" />
+
+    <View
+        android:id="@+id/numBackground3"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@drawable/pin_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/numBackground2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/numBackground2"
+        app:layout_constraintTop_toTopOf="@+id/numBackground2" />
+
+    <TextView
+        android:id="@+id/num3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_32sdp"
+        app:layout_constraintBottom_toBottomOf="@id/numBackground3"
+        app:layout_constraintEnd_toEndOf="@id/numBackground3"
+        app:layout_constraintStart_toStartOf="@id/numBackground3"
+        app:layout_constraintTop_toTopOf="@id/numBackground3" />
+
+    <!--4,5,6-->
+
+    <View
+        android:id="@+id/numBackground4"
+        app:layout_constraintBottom_toTopOf="@id/numBackground7"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_marginVertical="@dimen/_16sdp"
+        android:background="@drawable/pin_bg"
+        app:layout_constraintEnd_toStartOf="@id/numBackground5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numBackground1" />
+
+    <TextView
+        android:id="@+id/num4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_32sdp"
+        app:layout_constraintBottom_toBottomOf="@id/numBackground4"
+        app:layout_constraintEnd_toEndOf="@id/numBackground4"
+        app:layout_constraintStart_toStartOf="@id/numBackground4"
+        app:layout_constraintTop_toTopOf="@id/numBackground4" />
+
+    <View
+        android:id="@+id/numBackground5"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:background="@drawable/pin_bg"
+        app:layout_constraintEnd_toStartOf="@id/numBackground6"
+        app:layout_constraintStart_toEndOf="@id/numBackground4"
+        app:layout_constraintTop_toTopOf="@+id/numBackground4" />
+
+    <TextView
+        android:id="@+id/num5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_32sdp"
+        app:layout_constraintBottom_toBottomOf="@id/numBackground5"
+        app:layout_constraintEnd_toEndOf="@id/numBackground5"
+        app:layout_constraintStart_toStartOf="@id/numBackground5"
+        app:layout_constraintTop_toTopOf="@id/numBackground5" />
+
+    <View
+        android:id="@+id/numBackground6"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@drawable/pin_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/numBackground5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/numBackground5"
+        app:layout_constraintTop_toTopOf="@+id/numBackground5" />
+
+    <TextView
+        android:id="@+id/num6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_32sdp"
+        app:layout_constraintBottom_toBottomOf="@id/numBackground6"
+        app:layout_constraintEnd_toEndOf="@id/numBackground6"
+        app:layout_constraintStart_toStartOf="@id/numBackground6"
+        app:layout_constraintTop_toTopOf="@id/numBackground6" />
+    <!--7,8,9-->
+
+    <View
+        android:id="@+id/numBackground7"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@drawable/pin_bg"
+        app:layout_constraintBottom_toTopOf="@id/numBackground0"
+        app:layout_constraintEnd_toStartOf="@id/numBackground8"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numBackground4" />
+
+    <TextView
+        android:id="@+id/num7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_32sdp"
+        app:layout_constraintBottom_toBottomOf="@id/numBackground7"
+        app:layout_constraintEnd_toEndOf="@id/numBackground7"
+        app:layout_constraintStart_toStartOf="@id/numBackground7"
+        app:layout_constraintTop_toTopOf="@id/numBackground7" />
+
+    <View
+        android:id="@+id/numBackground8"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:background="@drawable/pin_bg"
+        app:layout_constraintEnd_toStartOf="@id/numBackground9"
+        app:layout_constraintStart_toEndOf="@id/numBackground7"
+        app:layout_constraintTop_toTopOf="@+id/numBackground7" />
+
+    <TextView
+        android:id="@+id/num8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="8"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_32sdp"
+        app:layout_constraintBottom_toBottomOf="@id/numBackground8"
+        app:layout_constraintEnd_toEndOf="@id/numBackground8"
+        app:layout_constraintStart_toStartOf="@id/numBackground8"
+        app:layout_constraintTop_toTopOf="@id/numBackground8" />
+
+    <View
+        android:id="@+id/numBackground9"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@drawable/pin_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/numBackground8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/numBackground8"
+        app:layout_constraintTop_toTopOf="@+id/numBackground8" />
+
+    <TextView
+        android:id="@+id/num9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_32sdp"
+        app:layout_constraintBottom_toBottomOf="@id/numBackground9"
+        app:layout_constraintEnd_toEndOf="@id/numBackground9"
+        app:layout_constraintStart_toStartOf="@id/numBackground9"
+        app:layout_constraintTop_toTopOf="@id/numBackground9" />
+
+    <!--0-->
+    <View
+        android:id="@+id/numBackground0"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@drawable/pin_bg"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/numBackground9"
+        app:layout_constraintStart_toStartOf="@+id/numBackground7"
+        app:layout_constraintTop_toBottomOf="@+id/numBackground7" />
+
+    <TextView
+        android:id="@+id/num0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_32sdp"
+        app:layout_constraintBottom_toBottomOf="@id/numBackground0"
+        app:layout_constraintEnd_toEndOf="@id/numBackground0"
+        app:layout_constraintStart_toStartOf="@id/numBackground0"
+        app:layout_constraintTop_toTopOf="@id/numBackground0" />
+
+    <TextView
+        android:id="@+id/logOutFromAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_16sdp"
+        android:text="Chiqish"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16sdp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numBackground0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
