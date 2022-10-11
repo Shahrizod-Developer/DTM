@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/mainScreen">
+    app:startDestination="@id/splashScreen">
 
 
     <fragment
@@ -14,9 +14,6 @@
         <action
             android:id="@+id/action_mainScreen_to_serviceDetailsScreen"
             app:destination="@id/serviceDetailsScreen" />
-        <action
-            android:id="@+id/action_mainScreen_to_newsScreen"
-            app:destination="@id/newsScreen" />
         <action
             android:id="@+id/action_mainScreen_to_newsInfoScreen"
             app:destination="@id/newsInfoScreen" />
@@ -54,22 +51,34 @@
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.application.ApplicationScreen"
         android:label="ApplicationScreen" />
     <fragment
-        tools:layout="@layout/screen_news"
-        android:id="@+id/newsScreen"
-        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.news.NewsScreen"
-        android:label="NewsScreen" >
-        <action
-            android:id="@+id/action_newsScreen_to_newsInfoScreen"
-            app:destination="@id/newsInfoScreen" />
-    </fragment>
-    <fragment
         tools:layout="@layout/screen_news_info"
         android:id="@+id/newsInfoScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.news.info.NewsInfoScreen"
         android:label="NewsInfoScreen" >
         <argument
-            android:name="NewsData"
+            android:name="news"
             app:argType="uz.gita.dtm.data.models.news.News" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreen"
+        tools:layout="@layout/screen_splash"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.splash.SplashScreen"
+        android:label="SplashScreen" >
+        <action
+            android:id="@+id/action_splashScreen_to_lockScreen"
+            app:destination="@id/lockScreen" />
+        <action
+            android:id="@+id/action_splashScreen_to_mainScreen"
+            app:destination="@id/mainScreen" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/screen_lock"
+        android:id="@+id/lockScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.LockScreen"
+        android:label="LockScreen" >
+        <action
+            android:id="@+id/action_lockScreen_to_mainScreen"
+            app:destination="@id/mainScreen" />
     </fragment>
 
 </navigation>
