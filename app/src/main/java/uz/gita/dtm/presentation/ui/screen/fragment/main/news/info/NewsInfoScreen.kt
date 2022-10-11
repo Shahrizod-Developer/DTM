@@ -29,13 +29,13 @@ class NewsInfoScreen : Fragment(R.layout.screen_news_info) {
             viewModel.backToNews()
         }
         val dateFormat = SimpleDateFormat("dd-MM-yyyy")
-        val date = dateFormat.format(args.newsData.date)
+        val date = dateFormat.format(args.news.date)
 
         viewBinding.tvItemDate.text = date
-        viewBinding.tvItemContent.text = args.newsData.desc
+        viewBinding.tvItemContent.text = args.news.desc
         Picasso
             .get()
-            .load(args.newsData.image)
+            .load(args.news.image)
             .into(viewBinding.ivItem, object : Callback {
                 override fun onSuccess() {
                     viewBinding.lottieLoading.visibility = View.GONE

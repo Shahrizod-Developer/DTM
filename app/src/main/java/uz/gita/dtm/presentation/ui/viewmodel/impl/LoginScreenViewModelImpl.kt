@@ -1,9 +1,9 @@
 package uz.gita.dtm.presentation.ui.viewmodel.impl
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import uz.gita.dtm.R
@@ -19,43 +19,55 @@ class LoginScreenViewModelImpl @Inject constructor(
     private val authUseCase: AuthUseCaseImpl
 ) : LoginScreenViewModel, ViewModel() {
 
-    override val btnBackLiveData = MutableLiveData<Unit>()
-    override val messageLiveData = MutableLiveData<Int>()
-    override val openRegistrationScreen = MutableLiveData<Unit>()
-    override val openMainScreen = MutableLiveData<Unit>()
-    override val messageForPhoneNumber = MutableLiveData<Int>()
-    override val messageForPassword = MutableLiveData<Int>()
-    override val recaptchaQuestionLiveData = MutableLiveData<String>()
+    override val btnBackLiveData = MutableSharedFlow<Unit>()
+    override val messageLiveData = MutableSharedFlow<String>()
+    override val openRegistrationScreen = MutableSharedFlow<Unit>()
+    override val openMainScreen = MutableSharedFlow<Unit>()
+    override val messageForPhoneNumber = MutableSharedFlow<Int>()
+    override val messageForPassword = MutableSharedFlow<Int>()
+    override val recaptchaQuestionLiveData = MutableSharedFlow<String>()
+    override val loadingLiveData = MutableSharedFlow<Boolean>()
 
 
     override fun btnBack() {
-        btnBackLiveData.value = Unit
+        viewModelScope.launch {
+            btnBackLiveData.emit(Unit)
+        }
     }
 
     private var answer = ""
 
     init {
-        recaptchaQuestionLiveData.value = getRecaptcha()
+        viewModelScope.launch {
+            recaptchaQuestionLiveData.emit(getRecaptcha())
+        }
     }
 
     override fun btnLogin(userData: User) {
-        if (userData.phoneNumber.isEmpty()) {
-            messageForPhoneNumber.value = R.string.no_number
-        }
-        if (userData.password.isEmpty()) {
-            messageForPassword.value = R.string.no_password
-        } else {
-            viewModelScope.launch {
-                authUseCase.login(userData).collectLatest {
-                    when (it) {
-                        is ResultData.Error -> {
-                            messageLiveData.value = R.string.app_name
-                        }
-                        is ResultData.Success -> {
-                            openMainScreen.value = Unit
-                        }
-                        is ResultData.Message -> {
-                            messageLiveData.value = R.string.app_name
+        viewModelScope.launch {
+            if (userData.phoneNumber.length != 13 || !userData.phoneNumber.startsWith("+998")) {
+                messageForPhoneNumber.emit(R.string.text5)
+            }
+            if (userData.password.isEmpty()) {
+                messageForPassword.emit(R.string.text6)
+            } else {
+                loadingLiveData.emit(true)
+                viewModelScope.launch {
+                    authUseCase.login(userData).collectLatest {
+                        when (it) {
+                            is ResultData.Error -> {
+                                loadingLiveData.emit(false)
+                            }
+                            is ResultData.Success -> {
+                                openMainScreen.emit(Unit)
+                                loadingLiveData.emit(false)
+                            }
+                            is ResultData.Message -> {
+                                it.message.onText {
+                                    messageLiveData.emit(it)
+                                }
+                                loadingLiveData.emit(false)
+                            }
                         }
                     }
                 }
@@ -64,7 +76,7 @@ class LoginScreenViewModelImpl @Inject constructor(
     }
 
     override fun openRegistrationScreen() {
-        openRegistrationScreen.value = Unit
+        viewModelScope.launch { openRegistrationScreen.emit(Unit) }
     }
 
     override fun checkRecaptcha(value: String): Boolean {

@@ -11,10 +11,12 @@
     <string name="dtm">DTM</string>
     <string name="enter">Kirish</string>
 
-    <string name="no_send_sms">SMS jo\'natilmadi</string>
-    <string name="wrong_login">login yoki parol xato</string>
-    <string name="no_number">raqam topilmadi</string>
-    <string name="no_password">Erorrpassword</string>
-    <string name="recaptcha">Misol ishlanmagan</string>
-    <string name="text1">Oldin ro\'yxatdan o\'tgan</string>
+
+    <string name="text1">Foydalanuvchi oldin ro\'yxatdan o\'tgan</string>
+    <string name="text2">SMS yuborilmadi</string>
+    <string name="text3">Login yoki parol noto\'g\'ri</string>
+    <string name="text4">Foydalanuvchi topilmadi</string>
+    <string name="text5">Telefon raqam xato kiritildi</string>
+    <string name="text6">Parol xato kiritildi</string>
+    <string name="text7">Misolni to\'g\'ri ishlab yoz</string>
 </resources>

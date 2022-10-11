@@ -43,10 +43,10 @@ class RegistrationScreenViewModelImpl @Inject constructor(private val useCase: A
 
     override fun btnRegister(activity: Activity, user: User) {
         if (user.phoneNumber.isEmpty()) {
-            messageForPhoneNumber.value = R.string.no_number
+            messageForPhoneNumber.value = R.string.text5
         }
         if (user.phoneNumber.isEmpty()) {
-            messageForPassword.value = R.string.no_password
+            messageForPassword.value = R.string.text6
         } else {
             MySharedPreference.phoneNumber = user.phoneNumber
             MySharedPreference.password = user.password

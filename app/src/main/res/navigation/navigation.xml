@@ -44,7 +44,17 @@
         android:id="@+id/loginScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.LoginScreen"
         android:label="screen_login"
-        tools:layout="@layout/screen_login" />
+        tools:layout="@layout/screen_login" >
+        <action
+            android:id="@+id/action_loginScreen_to_registrationScreen"
+            app:destination="@id/registrationScreen" />
+        <action
+            android:id="@+id/action_loginScreen_to_mainScreen"
+            app:destination="@id/mainScreen" />
+        <action
+            android:id="@+id/action_loginScreen_to_restorePasswordScreen"
+            app:destination="@id/restorePasswordScreen" />
+    </fragment>
     <fragment
         android:id="@+id/admissionScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.home.AdmissionScreen"
@@ -68,8 +78,40 @@
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.news.info.NewsInfoScreen"
         android:label="NewsInfoScreen" >
         <argument
-            android:name="NewsData"
+            android:name="news"
             app:argType="uz.gita.dtm.data.models.news.News" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.RegistrationScreen"
+        android:label="screen_registration"
+        tools:layout="@layout/screen_registration" >
+        <action
+            android:id="@+id/action_registrationScreen_to_verificationScreen"
+            app:destination="@id/verificationScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/verificationScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.VerificationScreen"
+        android:label="screen_verification"
+        tools:layout="@layout/screen_verification" >
+        <action
+            android:id="@+id/action_verificationScreen_to_registrationScreen"
+            app:destination="@id/registrationScreen" />
+        <action
+            android:id="@+id/action_verificationScreen_to_mainScreen"
+            app:destination="@id/mainScreen"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/restorePasswordScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.RestorePasswordScreen"
+        android:label="screen_restore_password"
+        tools:layout="@layout/screen_restore_password" >
+        <action
+            android:id="@+id/action_restorePasswordScreen_to_verificationScreen"
+            app:destination="@id/verificationScreen" />
     </fragment>
 
 </navigation>

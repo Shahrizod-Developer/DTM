@@ -41,10 +41,10 @@ class RestorePasswordScreenViewModelImpl @Inject constructor(
         MySharedPreference.password = userData.password
         MySharedPreference.phoneNumber = userData.phoneNumber
         if (userData.phoneNumber.isEmpty()) {
-            messageForPhoneNumber.value = R.string.no_number
+            messageForPhoneNumber.value = R.string.text5
         }
         if (userData.password.isEmpty()) {
-            messageForPassword.value = R.string.no_password
+            messageForPassword.value = R.string.text6
         } else {
             viewModelScope.launch {
                 useCase.restorePassword(userData.phoneNumber).collectLatest {

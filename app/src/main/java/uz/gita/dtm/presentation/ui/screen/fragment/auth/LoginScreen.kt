@@ -5,9 +5,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import uz.gita.dtm.R
 import uz.gita.dtm.data.models.auth.User
 import uz.gita.dtm.databinding.ScreenLoginBinding
@@ -23,32 +26,19 @@ class LoginScreen : Fragment(R.layout.screen_login) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.openRegistrationScreen.observe(this) {
-            navigation.navigate(LoginScreenDirections.actionLoginScreenToRegistrationScreen())
-        }
-        viewModel.btnBackLiveData.observe(this) {
-            navigation.popBackStack()
-        }
-        viewModel.messageForPhoneNumber.observe(this) {
-            Toast.makeText(requireContext(), getString(it), Toast.LENGTH_SHORT).show()
-        }
-        viewModel.messageForPassword.observe(this) {
-            Toast.makeText(requireContext(), getString(it), Toast.LENGTH_SHORT).show()
-        }
-        viewModel.openMainScreen.observe(this) {
-            Toast.makeText(requireContext(), "TIZIMGA KIRILDI", Toast.LENGTH_SHORT).show()
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.recaptchaQuestionLiveData.observe(viewLifecycleOwner) {
-            binding.textRecaptcha.text = it
+
+        lifecycleScope.launch {
+            viewModel.recaptchaQuestionLiveData.collectLatest {
+                binding.textRecaptcha.text = it
+            }
         }
 
-        binding.btnRegister.setOnClickListener {
-            viewModel.openRegistrationScreen()
-        }
+
+        binding.btnBack.setOnClickListener { viewModel.btnBack() }
         binding.btnLogin.setOnClickListener {
             if (viewModel.checkRecaptcha(binding.inputAnswer.text.toString())) {
                 viewModel.btnLogin(
@@ -58,10 +48,10 @@ class LoginScreen : Fragment(R.layout.screen_login) {
                     )
                 )
             } else {
-                Toast.makeText(requireContext(), R.string.recaptcha, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.text7, Toast.LENGTH_SHORT).show()
             }
         }
-        binding.btnBack.setOnClickListener { viewModel.btnBack() }
+        binding.btnRegister.setOnClickListener { viewModel.openRegistrationScreen() }
         binding.btnRestorePassword.setOnClickListener { viewModel.restorePassword() }
     }
 }

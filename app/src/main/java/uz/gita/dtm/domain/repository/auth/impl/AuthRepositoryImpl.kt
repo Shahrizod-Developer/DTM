@@ -32,28 +32,23 @@ class AuthRepositoryImpl @Inject constructor() : AuthRepository {
     private lateinit var mCallbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     private lateinit var mAuth: FirebaseAuth
 
-    override suspend fun sendSmsCode(
-        activity: Activity, phoneNumber: String
-    ): Flow<ResultData<Unit>> = callbackFlow {
-        val docRef = db.collection("authentication").document(phoneNumber)
-        docRef.get().addOnSuccessListener { document ->
-            if (document != null && document.data != null) {
-                Log.d("TTT" , "${document.data.toString()}")
-                val authData = document.toAuthentication()
-                if (authData.phoneNumber == phoneNumber) {
-                    trySend(ResultData.messageResource(R.string.text1))
-                }
-            } else {
-                mAuth = Firebase.auth
-                mCallbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                    override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-//                Log.d("TTT", "onVerificationCompleted: ${credential.smsCode}")
+    override fun sendSmsCode(activity: Activity, phoneNumber: String): Flow<ResultData<Unit>> =
+        callbackFlow {
+            val docRef = db.collection("authentication").document(phoneNumber)
+            docRef.get().addOnSuccessListener { document ->
+                if (document != null && document.data != null) {
+                    val authData = document.toAuthentication()
+                    if (authData.phoneNumber == phoneNumber) {
+                        trySend(ResultData.messageResource(R.string.text1))
                     }
+                } else {
+                    mAuth = Firebase.auth
+                    mCallbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                        override fun onVerificationCompleted(credential: PhoneAuthCredential) {}
 
                     override fun onVerificationFailed(e: FirebaseException) {
                         trySend(ResultData.error(e))
                     }
-
                     override fun onCodeSent(
                         verificationId: String, token: PhoneAuthProvider.ForceResendingToken
                     ) {
@@ -72,7 +67,10 @@ class AuthRepositoryImpl @Inject constructor() : AuthRepository {
         awaitClose()
     }
 
-    override suspend fun verificationSmsCode(context: Context, OTPpassword: String): Flow<ResultData<Unit>> = callbackFlow {
+    override fun verificationSmsCode(
+        context: Context,
+        OTPpassword: String
+    ): Flow<ResultData<Unit>> = callbackFlow {
         val credential =
             PhoneAuthProvider.getCredential(MySharedPreference.verificationId, OTPpassword)
         Firebase.auth.signInWithCredential(credential)
@@ -87,7 +85,7 @@ class AuthRepositoryImpl @Inject constructor() : AuthRepository {
                     db.collection("authentication").document(MySharedPreference.phoneNumber)
                         .set(user).addOnSuccessListener { trySend(ResultData.success(Unit)) }
                 } else {
-                    trySend(ResultData.message(MessageData.messageResource(R.string.no_send_sms)))
+                    trySend(ResultData.message(MessageData.messageResource(R.string.text2)))
                 }
             }.addOnFailureListener { eror ->
                 trySend(ResultData.error(eror))
@@ -95,7 +93,7 @@ class AuthRepositoryImpl @Inject constructor() : AuthRepository {
         awaitClose()
     }
 
-    override suspend fun login(user: User): Flow<ResultData<Unit>> = callbackFlow {
+    override fun login(user: User): Flow<ResultData<Unit>> = callbackFlow {
         val docRef = db.collection("authentication").document(user.phoneNumber)
         docRef.get().addOnSuccessListener { document ->
             if (document != null) {
@@ -104,7 +102,7 @@ class AuthRepositoryImpl @Inject constructor() : AuthRepository {
                     MySharedPreference.JShShIR = authData.jShShIR
                     trySend(ResultData.success(Unit))
                 } else {
-                    trySend(ResultData.message(MessageData.messageResource(R.string.wrong_login)))
+                    trySend(ResultData.message(MessageData.messageResource(R.string.text3)))
                 }
             }
         }.addOnFailureListener { eror ->
@@ -113,18 +111,17 @@ class AuthRepositoryImpl @Inject constructor() : AuthRepository {
         awaitClose()
     }
 
-    override suspend fun restorePassword(phoneNumber: String): Flow<ResultData<Unit>> =
-        callbackFlow {
-            val docRef = db.collection("authentication").document(phoneNumber)
-            docRef.get().addOnSuccessListener { document ->
-                if (document != null) {
-                    val authData = document.toAuthentication()
-                    if (authData.phoneNumber == phoneNumber) {
-                        MySharedPreference.JShShIR = authData.jShShIR
-                        trySend(ResultData.success(Unit))
-                    } else {
-                        trySend(ResultData.message(MessageData.messageResource(R.string.no_number)))
-                    }
+    override fun restorePassword(phoneNumber: String): Flow<ResultData<Unit>> = callbackFlow {
+        val docRef = db.collection("authentication").document(phoneNumber)
+        docRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                val authData = document.toAuthentication()
+                if (authData.phoneNumber == phoneNumber) {
+                    MySharedPreference.JShShIR = authData.jShShIR
+                    trySend(ResultData.success(Unit))
+                } else {
+                    trySend(ResultData.message(MessageData.messageResource(R.string.text4)))
+                }
                 }
             }.addOnFailureListener { eror ->
                 trySend(ResultData.error(eror))
@@ -132,7 +129,7 @@ class AuthRepositoryImpl @Inject constructor() : AuthRepository {
             awaitClose()
         }
 
-    override suspend fun setNewPassword(password: String): Flow<ResultData<Unit>> = callbackFlow {
+    override fun setNewPassword(password: String): Flow<ResultData<Unit>> = callbackFlow {
         var user = Authentication(
             userId = UUID.randomUUID().toString(),
             phoneNumber = MySharedPreference.phoneNumber,

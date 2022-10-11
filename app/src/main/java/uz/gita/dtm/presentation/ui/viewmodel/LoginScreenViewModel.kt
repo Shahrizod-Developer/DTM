@@ -1,16 +1,17 @@
 package uz.gita.dtm.presentation.ui.viewmodel
 
-import androidx.lifecycle.LiveData
+import kotlinx.coroutines.flow.Flow
 import uz.gita.dtm.data.models.auth.User
 
 interface LoginScreenViewModel {
-    val btnBackLiveData: LiveData<Unit>
-    val messageLiveData: LiveData<Int>
-    val openRegistrationScreen: LiveData<Unit>
-    val openMainScreen: LiveData<Unit>
-    val messageForPhoneNumber: LiveData<Int>
-    val messageForPassword: LiveData<Int>
-    val recaptchaQuestionLiveData: LiveData<String>
+    val btnBackLiveData: Flow<Unit>
+    val messageLiveData: Flow<String>
+    val openRegistrationScreen: Flow<Unit>
+    val openMainScreen: Flow<Unit>
+    val messageForPhoneNumber: Flow<Int>
+    val messageForPassword: Flow<Int>
+    val recaptchaQuestionLiveData: Flow<String>
+    val loadingLiveData: Flow<Boolean>
 
     fun btnBack()
     fun btnLogin(userData: User)
