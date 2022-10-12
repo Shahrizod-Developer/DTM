@@ -7,7 +7,7 @@
     <string name="abot_service">Xizmat haqida</string>
     <string name="service_application">Xizmat bo\'yicha arizilarim</string>
 
-    <string name="temp_text">"asd asd asd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhf as,dhf jad,\nshf asdhf ajsdhf a jsdhf ajhsd fjash dfjahsd fajhsd fajhds fajshdf as,dfh asjdhf ashdf ahjsd fahjs dfha,sd fhjasd fajsd fasdjh f,shadjf ajsdh \n\nfajsdhf asjdhf ajsdhf asjdhf asjdh <b>fasjdhf asljdhf asjdhf adsjh</b>></string>
+    <string name="temp_text">"asd asd asd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhfd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhf d asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhfd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhfd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhfd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhfd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhfd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhfd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhfd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhfd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhfd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhfd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhfd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhfd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhfd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhfd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhfd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhfd asd asd k a fasdjf a.dnf a,dsf ajshd fjahsd fsdhf jasjdhf asjdhfas,dhf jad,\nshf asdhf ajsdhf a jsdhf ajhsd fjash dfjahsd fajhsd fajhds fajshdf as,dfh asjdhf ashdf ahjsd fahjs dfha,sd fhjasd fajsd fasdjh f,shadjf ajsdh \n\nfajsdhf asjdhf ajsdhf asjdhf asjdh <b>fasjdhf asljdhf asjdhf adsjh</b>></string>
     <string name="dtm">DTM</string>
     <string name="enter">Kirish</string>
     <string name="use_service">Xizmatdan foydalanish</string>
@@ -15,4 +15,15 @@
     <string name="news_letters">Axborotnomalar</string>
     <string name="all_service">Barcha xizmatlar</string>
 
+
+    <string name="text1">Foydalanuvchi oldin ro\'yxatdan o\'tgan</string>
+    <string name="text2">SMS yuborilmadi</string>
+    <string name="text3">Login yoki parol noto\'g\'ri</string>
+    <string name="text4">Foydalanuvchi topilmadi</string>
+    <string name="text5">Telefon raqam xato kiritildi</string>
+    <string name="text6">Parol xato kiritildi</string>
+    <string name="text7">Misolni to\'g\'ri ishlab yoz</string>
+    <string name="emptyText" />
+    <string name="text8">Foydalanuvchi topilmadi</string>
+    <string name="text9">tekshiruv kodi xato</string>
 </resources>

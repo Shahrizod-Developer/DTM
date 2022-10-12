@@ -11,5 +11,6 @@ interface AuthRepository {
     fun sendSmsCode(activity: Activity, phoneNumber: String): Flow<ResultData<Unit>>
     fun verificationSmsCode(context: Context, password: String): Flow<ResultData<Unit>>
     fun login(user: User): Flow<ResultData<Unit>>
-    fun userPresence(): Flow<Boolean>
+    fun restorePassword(phoneNumber: String): Flow<ResultData<Unit>>
+    fun setNewPassword(password: String): Flow<ResultData<Unit>>
 }

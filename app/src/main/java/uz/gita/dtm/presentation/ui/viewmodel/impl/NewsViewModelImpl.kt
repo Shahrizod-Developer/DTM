@@ -12,7 +12,6 @@ import uz.gita.dtm.data.utils.ResultData
 import uz.gita.dtm.domain.usecase.NewsUseCase
 import uz.gita.dtm.presentation.navigation.Navigator
 import uz.gita.dtm.presentation.ui.screen.fragment.main.MainScreenDirections
-import uz.gita.dtm.presentation.ui.screen.fragment.main.news.NewsScreenDirections
 import uz.gita.dtm.presentation.ui.viewmodel.NewsViewModel
 import javax.inject.Inject
 
