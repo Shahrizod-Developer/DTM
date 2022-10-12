@@ -1,8 +1,7 @@
 package uz.gita.dtm.data.models.news
 
 import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-import java.io.Serializable
+import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class News(

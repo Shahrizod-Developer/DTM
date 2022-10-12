@@ -1,91 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-
-        android:id="@+id/search"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_36sdp"
-        android:layout_marginStart="@dimen/_30sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_30sdp"
-        android:background="@drawable/back_style_search"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0">
+        android:layout_height="wrap_content">
 
-        <ImageView
+        <LinearLayout
 
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:src="@drawable/search_svgrepo_com"
-            app:tint="#979696" />
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:background="@drawable/back_style_search"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0">
+
+            <ImageView
+
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:src="@drawable/search_svgrepo_com"
+                app:tint="#979696" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="Xizmat nomini tanlang"
+                android:textSize="@dimen/_12sdp" />
+
+        </LinearLayout>
 
         <TextView
 
+            android:id="@+id/service"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:text="Xizmat nomini tanlang"
-            android:textSize="@dimen/_12sdp" />
+            android:layout_margin="@dimen/_15sdp"
+            android:text="@string/all_service"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search"
+            app:layout_constraintVertical_bias="0" />
 
-    </LinearLayout>
+        <LinearLayout
 
-    <LinearLayout
-
-        android:id="@+id/ln"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_180sdp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search"
-        app:layout_constraintVertical_bias="0">
-
-        <androidx.viewpager2.widget.ViewPager2
-
-            android:id="@+id/viewPager"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:clipChildren="false"
-            android:clipToPadding="false"
+            android:id="@+id/ln"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_190sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/_5sdp"
-            android:paddingTop="@dimen/_20sdp"
-            android:paddingBottom="@dimen/_20sdp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/service"
+            app:layout_constraintVertical_bias="0">
 
-    </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+
+                android:id="@+id/viewPager"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/_5sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_service" />
+
+        </LinearLayout>
 
 
-    <ProgressBar
+        <TextView
 
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/ln"
-        app:layout_constraintLeft_toLeftOf="@id/ln"
-        app:layout_constraintRight_toRightOf="@id/ln"
-        app:layout_constraintTop_toTopOf="@id/ln" />
+            android:id="@+id/news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_15sdp"
+            android:text="@string/news_letters"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ln"
+            app:layout_constraintVertical_bias="0" />
 
-    <TextView
 
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="List bo'sh"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/ln"
-        app:layout_constraintLeft_toLeftOf="@id/ln"
-        app:layout_constraintRight_toRightOf="@id/ln"
-        app:layout_constraintTop_toTopOf="@id/ln" />
+        <androidx.recyclerview.widget.RecyclerView
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:id="@+id/rvNews"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_180sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/news"
+            tools:listitem="@layout/item_news_letter" />
+
+        <ProgressBar
+
+            android:id="@+id/progressNews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/rvNews"
+            app:layout_constraintLeft_toLeftOf="@id/rvNews"
+            app:layout_constraintRight_toRightOf="@id/rvNews"
+            app:layout_constraintTop_toTopOf="@id/rvNews" />
+
+        <TextView
+
+            android:id="@+id/textNews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="List bo'sh"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/rvNews"
+            app:layout_constraintLeft_toLeftOf="@id/rvNews"
+            app:layout_constraintRight_toRightOf="@id/rvNews"
+            app:layout_constraintTop_toTopOf="@id/rvNews" />
+
+
+        <ProgressBar
+
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/ln"
+            app:layout_constraintLeft_toLeftOf="@id/ln"
+            app:layout_constraintRight_toRightOf="@id/ln"
+            app:layout_constraintTop_toTopOf="@id/ln" />
+
+        <TextView
+
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="List bo'sh"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/ln"
+            app:layout_constraintLeft_toLeftOf="@id/ln"
+            app:layout_constraintRight_toRightOf="@id/ln"
+            app:layout_constraintTop_toTopOf="@id/ln" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,7 +1,7 @@
 package uz.gita.dtm.data.models.persondata
 
 data class Application(
-    val id: String,
+    val id: Long,
     val title: String,
     val image: String,
     val number: String,

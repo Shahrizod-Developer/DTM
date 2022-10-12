@@ -31,6 +31,6 @@ class ApplicationRepositoryImpl @Inject constructor() : ApplicationRepository {
         }
 
     override fun addApplication(application: Application) {
-        db.collection("applications").document(application.id).set(application)
+        db.collection("applications").document(application.id.toString()).set(application)
     }
 }

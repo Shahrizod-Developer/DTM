@@ -1,33 +1,30 @@
 package uz.gita.dtm.presentation.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import uz.gita.dtm.R
-import uz.gita.dtm.data.models.service.Service
-import uz.gita.dtm.databinding.ItemServiceBinding
+import uz.gita.dtm.data.models.tests.NewsLetter
+import uz.gita.dtm.databinding.ItemNewsLetterBinding
 import java.lang.Exception
-import kotlin.math.abs
 
 
-class ServiceAdapter() :
-    androidx.recyclerview.widget.ListAdapter<Service, ServiceAdapter.Holder>(ContactComparator) {
+class NewsLetterAdapter() :
+    ListAdapter<NewsLetter, NewsLetterAdapter.Holder>(ContactComparator) {
 
-    private var itemOnClick: ((Service) -> Unit)? = null
+    private var itemOnClick: ((NewsLetter) -> Unit)? = null
 
-    fun onCLickItem(block: (Service) -> Unit) {
+    fun onCLickItem(block: (NewsLetter) -> Unit) {
         itemOnClick = block
     }
 
-    inner class Holder(val binding: ItemServiceBinding) :
+    inner class Holder(val binding: ItemNewsLetterBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
@@ -48,6 +45,7 @@ class ServiceAdapter() :
                     override fun onSuccess() {
                         binding.lottieLoading.visibility = View.GONE
                     }
+
                     override fun onError(e: Exception?) {
                         binding.lottieLoading.visibility = View.GONE
                         binding.image.setImageResource(R.drawable.bachelor_cap_svgrepo_com)
@@ -56,19 +54,19 @@ class ServiceAdapter() :
         }
     }
 
-    object ContactComparator : DiffUtil.ItemCallback<Service>() {
-        override fun areItemsTheSame(oldItem: Service, newItem: Service): Boolean {
+    object ContactComparator : DiffUtil.ItemCallback<NewsLetter>() {
+        override fun areItemsTheSame(oldItem: NewsLetter, newItem: NewsLetter): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Service, newItem: Service): Boolean {
+        override fun areContentsTheSame(oldItem: NewsLetter, newItem: NewsLetter): Boolean {
             return oldItem.title == newItem.title && oldItem.id == newItem.id && oldItem.image == newItem.image
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder = Holder(
-        ItemServiceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        ItemNewsLetterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
     override fun onBindViewHolder(holder: Holder, position: Int) = holder.bind()

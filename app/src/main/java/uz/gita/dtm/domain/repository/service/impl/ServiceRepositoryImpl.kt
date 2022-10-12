@@ -13,6 +13,7 @@ import uz.gita.dtm.data.models.mapper.Mapper.toApplication
 import uz.gita.dtm.data.models.mapper.Mapper.toService
 import uz.gita.dtm.data.models.persondata.Application
 import uz.gita.dtm.data.models.service.Service
+import uz.gita.dtm.data.shp.MySharedPreference
 import uz.gita.dtm.data.utils.ResultData
 import uz.gita.dtm.domain.repository.service.ServiceRepository
 import javax.inject.Inject
@@ -33,14 +34,14 @@ class ServiceRepositoryImpl @Inject constructor() : ServiceRepository {
         awaitClose { serviceList.remove() }
     }.flowOn(Dispatchers.IO)
 
-    override fun getApplicationById(applicantId: String): Flow<ResultData<Application>> =
+    override fun getApplicationById(): Flow<ResultData<Application>> =
         callbackFlow {
 
 
             val application = db.collection("applications").addSnapshotListener { value, error ->
                 val data = value?.documents?.map {
                     it.toApplication()
-                }?.filter { it -> it.id == applicantId }?.toList()?.get(0)
+                }?.filter { it -> it.id == MySharedPreference.JShShIR }?.toList()?.get(0)
 
                 trySend(ResultData.success(data!!))
             }

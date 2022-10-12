@@ -4,10 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import uz.gita.dtm.domain.usecase.AuthUseCase
 import uz.gita.dtm.presentation.navigation.Navigator
@@ -48,7 +45,7 @@ class ServiceDetailsViewModelImpl @Inject constructor(
         }
     }
 
-    override fun showApplicationDialog() {
+    private fun showApplicationDialog() {
         viewModelScope.launch {
             showApplicationDialogFlow.emit(true)
         }
@@ -60,19 +57,25 @@ class ServiceDetailsViewModelImpl @Inject constructor(
         }
     }
 
-    override fun openApplicationScreen() {
-        viewModelScope.launch {
-            navigator.navigateTo(ServiceDetailsScreenDirections.actionServiceDetailsScreenToApplicationScreen2())
-        }
-    }
-
     override fun onCLickUseService() {
         viewModelScope.launch {
-            authUseCase.userPresence().onEach {
+            authUseCase.userPresence().collectLatest {
                 if (it) {
                     openAdmissionScreen()
                 } else {
                     showUseServiceDialog()
+                }
+            }
+        }
+    }
+
+    override fun onCLickApplication() {
+        viewModelScope.launch {
+            authUseCase.userPresence().collectLatest {
+                if (it) {
+                    navigator.navigateTo(ServiceDetailsScreenDirections.actionServiceDetailsScreenToApplicationScreen2())
+                } else {
+                    showApplicationDialog()
                 }
             }
         }

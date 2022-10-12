@@ -8,11 +8,12 @@
 
     <ImageView
         android:id="@+id/btn_back"
-        android:layout_width="50dp"
-        android:layout_height="?actionBarSize"
+        android:layout_width="@dimen/_28sdp"
+        android:layout_height="@dimen/_28sdp"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_12sdp"
-        android:padding="10dp"
+        android:background="@drawable/back_style_image"
+        android:padding="@dimen/_8sdp"
         android:src="@drawable/ic_baseline_arrow_back_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,8 +32,8 @@
         android:id="@+id/input_number_block"
         style="@style/input_text_style"
         android:layout_marginHorizontal="8dp"
-        android:backgroundTint="@color/white"
         android:layout_marginTop="@dimen/_24sdp"
+        android:backgroundTint="@color/white"
         android:preferKeepClear="true"
         app:counterMaxLength="9"
         app:layout_constraintBottom_toTopOf="@id/input_password_block"
@@ -57,12 +58,12 @@
         style="@style/input_text_style"
         android:layout_marginHorizontal="8dp"
         android:backgroundTint="@color/white"
+        app:counterMaxLength="20"
         app:layout_constraintBottom_toTopOf="@id/btn_restore_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/input_number_block"
         app:passwordToggleEnabled="true"
-        app:counterMaxLength="20"
         app:passwordToggleTint="@color/icon_color"
         app:startIconTint="@color/icon_color">
 
@@ -79,28 +80,28 @@
     <TextView
         android:id="@+id/btn_restore_password"
         android:layout_width="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/text_recaptcha_help"
         android:layout_height="wrap_content"
         android:text="Parolni tiklash"
         android:textColor="@color/hint_color1"
         android:textSize="@dimen/_17sdp"
         android:textStyle="bold"
-        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintBottom_toTopOf="@+id/text_recaptcha_help"
         app:layout_constraintEnd_toEndOf="@id/input_password_block"
-        app:layout_constraintTop_toBottomOf="@id/input_password_block" />
+        app:layout_constraintTop_toBottomOf="@id/input_password_block"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/text_recaptcha_help"
         android:layout_width="wrap_content"
-        android:layout_marginBottom="@dimen/_8sdp"
-        app:layout_constraintBottom_toTopOf="@+id/text_recaptcha"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_8sdp"
         android:text="Arifmetik amalni bajaring"
         android:textColor="@color/text_color_black"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/btn_restore_password"
+        app:layout_constraintBottom_toTopOf="@+id/text_recaptcha"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_restore_password" />
 
 
     <TextView
@@ -108,10 +109,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
+        android:text="8 x 8 = "
         android:textColor="@color/text_color_black"
         android:textSize="@dimen/_17sdp"
         android:textStyle="bold"
-        android:text="8 x 8 = "
         app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -134,14 +135,14 @@
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="@dimen/_36sdp"
-        android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
         android:background="@drawable/button_background_1"
         android:text="Tizimga kirish"
         android:textColor="@color/white"
-        android:layout_marginBottom="@dimen/_8sdp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/text_or"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <FrameLayout
@@ -161,10 +162,10 @@
         android:text="Yoki"
         android:textColor="@color/text_color_black"
         android:textSize="14sp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.8" />
 
     <FrameLayout
@@ -182,11 +183,11 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/_36sdp"
         android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:background="@drawable/button_background_1"
         android:text="Ro'yxatdan o'tish"
         android:textColor="@color/white"
-        android:layout_marginTop="@dimen/_8sdp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_or" />
 </androidx.constraintlayout.widget.ConstraintLayout>

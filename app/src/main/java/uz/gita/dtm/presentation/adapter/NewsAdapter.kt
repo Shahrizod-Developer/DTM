@@ -72,14 +72,12 @@ class NewsAdapter(private val context: Context) :
         }
 
         init {
-            binding.card.setOnClickListener {
+            itemView.setOnClickListener {
                 itemClickListListener?.invoke(getItem(absoluteAdapterPosition))
             }
             if (loadingListener?.invoke()!!) {
-                Log.d("bbbb", "${loadingListener?.invoke()!!} from A")
                 binding.lottieLoading.visibility = View.VISIBLE
             } else {
-                Log.d("bbbb", "${loadingListener?.invoke()!!} from A")
                 binding.lottieLoading.visibility = View.GONE
             }
         }

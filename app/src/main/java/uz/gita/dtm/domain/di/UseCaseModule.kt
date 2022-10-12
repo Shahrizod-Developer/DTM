@@ -28,4 +28,7 @@ interface UseCaseModule {
 
     @Binds
     fun bindsAuthUseCase(impl: AuthUseCaseImpl): AuthUseCase
+
+    @Binds
+    fun bindsTestsUseCase(impl: TestsUseCaseImpl): TestsUseCase
 }

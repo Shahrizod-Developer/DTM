@@ -1,9 +1,7 @@
 package uz.gita.dtm.data.models.service
 
 import android.os.Parcelable
-import androidx.navigation.NavArgs
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 
 
 @Parcelize

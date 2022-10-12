@@ -12,6 +12,8 @@ import uz.gita.dtm.domain.repository.auth.AuthRepository
 import uz.gita.dtm.domain.repository.auth.impl.AuthRepositoryImpl
 import uz.gita.dtm.domain.repository.news.NewsRepository
 import uz.gita.dtm.domain.repository.news.impl.NewsRepositoryImpl
+import uz.gita.dtm.domain.repository.newsletter.TestsRepository
+import uz.gita.dtm.domain.repository.newsletter.impl.TestsRepositoryImpl
 import uz.gita.dtm.domain.repository.service.ServiceRepository
 import uz.gita.dtm.domain.repository.service.impl.ServiceRepositoryImpl
 
@@ -33,4 +35,7 @@ interface ApplicantRepositoryModule {
 
     @Binds
     fun bindsServiceRepository(impl: ServiceRepositoryImpl): ServiceRepository
+
+    @Binds
+    fun bindTestsRepository(impl: TestsRepositoryImpl): TestsRepository
 }

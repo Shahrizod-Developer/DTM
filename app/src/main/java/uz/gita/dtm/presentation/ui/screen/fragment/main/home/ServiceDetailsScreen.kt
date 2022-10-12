@@ -43,12 +43,13 @@ class ServiceDetailsScreen : Fragment(R.layout.screen_service_detail) {
             viewModel.showAboutServiceDialog()
         }
         binding.serviceApplication.setOnClickListener {
-            viewModel.showApplicationDialog()
+            viewModel.onCLickApplication()
         }
 
         binding.back.setOnClickListener {
             viewModel.back()
         }
+
         lifecycleScope.launch {
             viewModel.showAboutServiceDialogFlow.collectLatest {
                 if (it) {
@@ -56,7 +57,13 @@ class ServiceDetailsScreen : Fragment(R.layout.screen_service_detail) {
                 }
             }
         }
-
+        lifecycleScope.launch {
+            viewModel.showApplicationDialogFlow.collectLatest {
+                if (it) {
+                    showUseServiceDialog()
+                }
+            }
+        }
         lifecycleScope.launch {
             viewModel.showUseServiceDialogFlow.collectLatest {
                 if (it) {

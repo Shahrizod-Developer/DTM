@@ -9,5 +9,5 @@ interface ServiceRepository {
 
     fun getServiceList(): Flow<ResultData<List<Service>>>
 
-    fun getApplicationById(applicantId: String): Flow<ResultData<Application>>
+    fun getApplicationById(): Flow<ResultData<Application>>
 }

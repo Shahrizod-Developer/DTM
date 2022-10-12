@@ -8,6 +8,7 @@ import uz.gita.dtm.data.models.persondata.Application
 import uz.gita.dtm.data.models.persondata.Education
 import uz.gita.dtm.data.models.persondata.Passport
 import uz.gita.dtm.data.models.service.Service
+import uz.gita.dtm.data.models.tests.NewsLetter
 
 object Mapper {
 
@@ -39,7 +40,7 @@ object Mapper {
     )
 
     fun DocumentSnapshot.toApplication() = Application(
-        id = this["id"].toString(),
+        id = this["id"].toString().toLong(),
         title = this["title"].toString(),
         image = this["image"].toString(),
         number = this["number"].toString(),
@@ -75,5 +76,12 @@ object Mapper {
         phoneNumber = this["phoneNumber"].toString(),
         password = this["password"].toString(),
         jShShIR = this["jShShIR"].toString().toLong()
+    )
+
+    fun DocumentSnapshot.toNewsLetters() = NewsLetter(
+        id = this["id"].toString(),
+        title = this["title"].toString(),
+        image = this["image"].toString(),
+        desc = this["desc"].toString()
     )
 }

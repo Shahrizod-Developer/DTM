@@ -68,7 +68,7 @@
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.news.info.NewsInfoScreen"
         android:label="NewsInfoScreen" >
         <argument
-            android:name="NewsData"
+            android:name="news"
             app:argType="uz.gita.dtm.data.models.news.News" />
     </fragment>
 

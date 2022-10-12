@@ -11,6 +11,7 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.dtm.R
+import uz.gita.dtm.data.models.news.News
 import uz.gita.dtm.databinding.ScreenNewsInfoBinding
 import uz.gita.dtm.presentation.ui.viewmodel.ScreenNewsInfoViewModel
 import uz.gita.dtm.presentation.ui.viewmodel.impl.NewsInfoViewModelImpl
@@ -29,13 +30,13 @@ class NewsInfoScreen : Fragment(R.layout.screen_news_info) {
             viewModel.backToNews()
         }
         val dateFormat = SimpleDateFormat("dd-MM-yyyy")
-        val date = dateFormat.format(args.newsData.date)
+        val date = dateFormat.format(args.news.date)
 
         viewBinding.tvItemDate.text = date
-        viewBinding.tvItemContent.text = args.newsData.desc
+        viewBinding.tvItemContent.text = args.news.desc
         Picasso
             .get()
-            .load(args.newsData.image)
+            .load(args.news.image)
             .into(viewBinding.ivItem, object : Callback {
                 override fun onSuccess() {
                     viewBinding.lottieLoading.visibility = View.GONE

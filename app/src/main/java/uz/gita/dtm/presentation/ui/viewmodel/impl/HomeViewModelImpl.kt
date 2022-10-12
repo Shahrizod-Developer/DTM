@@ -11,9 +11,11 @@ import kotlinx.coroutines.launch
 import uz.gita.dtm.data.models.persondata.Applicant
 import uz.gita.dtm.data.models.persondata.Education
 import uz.gita.dtm.data.models.service.Service
+import uz.gita.dtm.data.models.tests.NewsLetter
 import uz.gita.dtm.data.utils.ResultData
 import uz.gita.dtm.domain.repository.applicant.ApplicantRepository
 import uz.gita.dtm.domain.usecase.HomeUseCase
+import uz.gita.dtm.domain.usecase.TestsUseCase
 import uz.gita.dtm.presentation.navigation.Navigator
 import uz.gita.dtm.presentation.ui.screen.fragment.main.MainScreenDirections
 import uz.gita.dtm.presentation.ui.viewmodel.HomeViewModel
@@ -22,15 +24,19 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModelImpl @Inject constructor(
     private val homeUseCase: HomeUseCase,
+    private val testsUseCase: TestsUseCase,
     private val applicantRepository: ApplicantRepository,
     private val navigator: Navigator
 ) : HomeViewModel, ViewModel() {
 
 
     override val loading = MutableStateFlow(false)
+    override val loadingNewsLetter = MutableStateFlow(false)
     override val message = MutableStateFlow("")
 
     override var serviceList = MutableStateFlow(emptyList<Service>())
+    override val newsLettersList = MutableStateFlow(emptyList<NewsLetter>())
+
 
     init {
         viewModelScope.launch {
@@ -50,6 +56,23 @@ class HomeViewModelImpl @Inject constructor(
                     }
                 }
 
+            }
+        }
+        viewModelScope.launch {
+            loadingNewsLetter.emit(true)
+            testsUseCase.getAllNewsLetters().collectLatest {
+                when (it) {
+                    is ResultData.Error -> {
+                        loadingNewsLetter.emit(false)
+                    }
+                    is ResultData.Success -> {
+                        newsLettersList.emit(it.data)
+                        loadingNewsLetter.emit(false)
+                    }
+                    is ResultData.Message -> {
+                        message.emit(it.message.toString())
+                    }
+                }
             }
         }
     }
