@@ -97,12 +97,17 @@ class AuthRepositoryImpl @Inject constructor() : AuthRepository {
         val docRef = db.collection("authentication").document(user.phoneNumber)
         docRef.get().addOnSuccessListener { document ->
             if (document != null) {
-                val authData = document.toAuthentication()
-                if (authData.phoneNumber == user.phoneNumber && authData.password == user.password) {
-                    MySharedPreference.JShShIR = authData.jShShIR
-                    trySend(ResultData.success(Unit))
+                if (document.data != null) {
+                    val authData = document.toAuthentication()
+                    if (authData.phoneNumber == user.phoneNumber && authData.password == user.password) {
+                        MySharedPreference.JShShIR = authData.jShShIR
+                        trySend(ResultData.success(Unit))
+                    }
+                    else {
+                        trySend(ResultData.message(MessageData.messageResource(R.string.text3)))
+                    }
                 } else {
-                    trySend(ResultData.message(MessageData.messageResource(R.string.text3)))
+                    trySend(ResultData.message(MessageData.messageResource(R.string.text8)))
                 }
             }
         }.addOnFailureListener { eror ->

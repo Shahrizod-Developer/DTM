@@ -19,4 +19,7 @@
     <string name="text5">Telefon raqam xato kiritildi</string>
     <string name="text6">Parol xato kiritildi</string>
     <string name="text7">Misolni to\'g\'ri ishlab yoz</string>
+    <string name="emptyText" />
+    <string name="text8">Foydalanuvchi topilmadi</string>
+    <string name="text9">tekshiruv kodi xato</string>
 </resources>

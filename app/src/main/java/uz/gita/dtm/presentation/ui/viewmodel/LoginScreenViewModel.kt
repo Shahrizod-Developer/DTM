@@ -4,10 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import uz.gita.dtm.data.models.auth.User
 
 interface LoginScreenViewModel {
-    val btnBackLiveData: Flow<Unit>
-    val messageLiveData: Flow<String>
-    val openRegistrationScreen: Flow<Unit>
-    val openMainScreen: Flow<Unit>
+    val messageLiveData: Flow<Int>
     val messageForPhoneNumber: Flow<Int>
     val messageForPassword: Flow<Int>
     val recaptchaQuestionLiveData: Flow<String>

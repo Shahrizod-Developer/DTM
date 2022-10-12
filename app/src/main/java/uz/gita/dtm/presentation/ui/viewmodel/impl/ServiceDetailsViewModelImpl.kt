@@ -67,14 +67,14 @@ class ServiceDetailsViewModelImpl @Inject constructor(
     }
 
     override fun onCLickUseService() {
-        viewModelScope.launch {
-            authUseCase.userPresence().onEach {
-                if (it) {
-                    openAdmissionScreen()
-                } else {
-                    showUseServiceDialog()
-                }
-            }
-        }
+//        viewModelScope.launch {
+//            authUseCase.userPresence().onEach {
+//                if (it) {
+//                    openAdmissionScreen()
+//                } else {
+//                    showUseServiceDialog()
+//                }
+//            }
+//        }
     }
 }
