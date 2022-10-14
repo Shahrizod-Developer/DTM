@@ -1,14 +1,18 @@
 package uz.gita.dtm.presentation.ui.screen.dialog
 
+import android.R
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.addTextChangedListener
+import android.view.ViewTreeObserver
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -19,6 +23,7 @@ import uz.gita.dtm.presentation.adapter.SearchServiceAdapter
 import uz.gita.dtm.presentation.ui.viewmodel.HomeViewModel
 import uz.gita.dtm.presentation.ui.viewmodel.impl.HomeViewModelImpl
 import java.util.*
+
 
 @AndroidEntryPoint
 class AllServiceDialog : BottomSheetDialogFragment() {
@@ -32,10 +37,6 @@ class AllServiceDialog : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = DialogAllServicesBinding.inflate(inflater, container, false)
-
-        viewModel.serviceList.onEach {
-            adapter.submitList(it)
-        }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         binding.rv.adapter = adapter
 
@@ -90,6 +91,5 @@ class AllServiceDialog : BottomSheetDialogFragment() {
 
         return binding.root
     }
-
 
 }

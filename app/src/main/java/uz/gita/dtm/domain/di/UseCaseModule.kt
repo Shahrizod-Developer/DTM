@@ -27,6 +27,9 @@ interface UseCaseModule {
     fun bindsApplicationUseCase(impl: ApplicationUseCaseImpl): ApplicationUseCase
 
     @Binds
+    fun bindApplicantUseCase(impl: ApplicantUseCaseImpl): ApplicantUseCase
+
+    @Binds
     fun bindsAuthUseCase(impl: AuthUseCaseImpl): AuthUseCase
 
     @Binds

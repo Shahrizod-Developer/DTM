@@ -14,8 +14,6 @@
     <string name="owner_data">Shaxsiy ma\'lumotlar</string>
     <string name="news_letters">Axborotnomalar</string>
     <string name="all_service">Barcha xizmatlar</string>
-
-
     <string name="text1">Foydalanuvchi oldin ro\'yxatdan o\'tgan</string>
     <string name="text2">SMS yuborilmadi</string>
     <string name="text3">Login yoki parol noto\'g\'ri</string>
@@ -26,4 +24,13 @@
     <string name="emptyText" />
     <string name="text8">Foydalanuvchi topilmadi</string>
     <string name="text9">tekshiruv kodi xato</string>
+    <string name="fullname">FISH</string>
+    <string name="birthday">Tug\'ilgan sana</string>
+    <string name="jshshr">JShSHR</string>
+    <string name="address">Doimiy yashash manzili</string>
+    <string name="region">Viloyatingizni kiriting</string>
+    <string name="district">Tumaningizni kiriting</string>
+    <string name="passport_series">Passport yoki ID karta seriya va raqami</string>
+    <string name="update_owner_data">Shaxsiy ma\'lumotlarni yangilash</string>
+    <string name="confirm">Tasdiqlsh</string>
 </resources>

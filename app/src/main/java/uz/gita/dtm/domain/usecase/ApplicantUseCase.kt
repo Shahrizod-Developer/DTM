@@ -1,16 +1,18 @@
-package uz.gita.dtm.domain.repository.applicant
+package uz.gita.dtm.domain.usecase
 
 import kotlinx.coroutines.flow.Flow
-import uz.gita.dtm.data.models.persondata.Applicant
 import uz.gita.dtm.data.models.persondata.ApplicantAddress
 import uz.gita.dtm.data.models.persondata.Education
 import uz.gita.dtm.data.models.persondata.Passport
 import uz.gita.dtm.data.models.request.ApplicantRequest
 import uz.gita.dtm.data.utils.ResultData
 
-interface ApplicantRepository {
+interface ApplicantUseCase {
 
-    fun getPassport(applicantRequest: ApplicantRequest, state: Boolean): Flow<ResultData<Passport>>
+    suspend fun getPassportData(
+        applicantRequest: ApplicantRequest,
+        state: Boolean
+    ): Flow<ResultData<Passport>>
 
     fun addAddress(applicantAddress: ApplicantAddress): Flow<ResultData<String>>
 
@@ -21,5 +23,4 @@ interface ApplicantRepository {
     fun getEducation(jShShR: Long): Flow<ResultData<Education>>
 
     fun getJShShR(): Flow<String>
-
 }

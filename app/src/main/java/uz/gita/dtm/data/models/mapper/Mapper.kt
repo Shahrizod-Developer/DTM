@@ -15,6 +15,8 @@ object Mapper {
     fun DocumentSnapshot.toPassport() = Passport(
         firstName = this["first_name"].toString(),
         lastName = this["last_name"].toString(),
+        image = this["image"].toString(),
+        birthday = this["birthday"].toString().toLong(),
         fatherName = this["father_name"].toString(),
         jShShir = this["jshshr"].toString().toLong(),
         passportsSeries = this["series"].toString(),

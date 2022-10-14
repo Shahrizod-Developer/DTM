@@ -2,6 +2,7 @@ package uz.gita.dtm.domain.usecase.impl
 
 import android.app.Activity
 import android.content.Context
+import kotlinx.coroutines.flow.Flow
 import uz.gita.dtm.data.models.auth.User
 import uz.gita.dtm.domain.repository.auth.impl.AuthRepositoryImpl
 import uz.gita.dtm.domain.usecase.AuthUseCase
@@ -22,4 +23,6 @@ class AuthUseCaseImpl @Inject constructor(
         repository.restorePassword(phoneNumber)
 
     override fun setNewPassword(password: String) = repository.setNewPassword(password)
+
+    override fun userPresence(): Flow<Boolean> = repository.userPresence()
 }

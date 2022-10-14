@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/loginScreen">
+    app:startDestination="@id/mainScreen">
 
 
     <fragment
@@ -17,7 +17,11 @@
         <action
             android:id="@+id/action_mainScreen_to_newsInfoScreen"
             app:destination="@id/newsInfoScreen" />
+        <action
+            android:id="@+id/action_mainScreen_to_lockScreen"
+            app:destination="@id/lockScreen" />
     </fragment>
+
     <fragment
         android:id="@+id/serviceDetailsScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.home.ServiceDetailsScreen"
@@ -41,7 +45,7 @@
         android:id="@+id/loginScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.LoginScreen"
         android:label="screen_login"
-        tools:layout="@layout/screen_login" >
+        tools:layout="@layout/screen_login">
         <action
             android:id="@+id/action_loginScreen_to_registrationScreen"
             app:destination="@id/registrationScreen" />
@@ -55,25 +59,29 @@
     <fragment
         android:id="@+id/admissionScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.home.AdmissionScreen"
-        android:label="AdmissionScreen" />
+        android:label="AdmissionScreen" >
+        <action
+            android:id="@+id/action_admissionScreen_to_ownerDataScreen"
+            app:destination="@id/ownerDataScreen" />
+    </fragment>
     <fragment
         android:id="@+id/applicationScreen2"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.application.ApplicationScreen"
         android:label="ApplicationScreen" />
     <fragment
-        tools:layout="@layout/screen_news_info"
         android:id="@+id/newsInfoScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.news.info.NewsInfoScreen"
-        android:label="NewsInfoScreen" >
+        android:label="NewsInfoScreen"
+        tools:layout="@layout/screen_news_info">
         <argument
             android:name="news"
             app:argType="uz.gita.dtm.data.models.news.News" />
     </fragment>
     <fragment
         android:id="@+id/splashScreen"
-        tools:layout="@layout/screen_splash"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.splash.SplashScreen"
-        android:label="SplashScreen" >
+        android:label="SplashScreen"
+        tools:layout="@layout/screen_splash">
         <action
             android:id="@+id/action_splashScreen_to_lockScreen"
             app:destination="@id/lockScreen" />
@@ -82,19 +90,15 @@
             app:destination="@id/mainScreen" />
     </fragment>
     <fragment
-        tools:layout="@layout/screen_lock"
         android:id="@+id/lockScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.LockScreen"
-        android:label="LockScreen" >
-        <action
-            android:id="@+id/action_lockScreen_to_mainScreen"
-            app:destination="@id/mainScreen" />
-    </fragment>
+        android:label="LockScreen"
+        tools:layout="@layout/screen_lock"/>
     <fragment
         android:id="@+id/registrationScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.RegistrationScreen"
         android:label="screen_registration"
-        tools:layout="@layout/screen_registration" >
+        tools:layout="@layout/screen_registration">
         <action
             android:id="@+id/action_registrationScreen_to_verificationScreen"
             app:destination="@id/verificationScreen" />
@@ -103,7 +107,7 @@
         android:id="@+id/verificationScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.VerificationScreen"
         android:label="screen_verification"
-        tools:layout="@layout/screen_verification" >
+        tools:layout="@layout/screen_verification">
         <action
             android:id="@+id/action_verificationScreen_to_registrationScreen"
             app:destination="@id/registrationScreen" />
@@ -117,10 +121,23 @@
         android:id="@+id/restorePasswordScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.RestorePasswordScreen"
         android:label="screen_restore_password"
-        tools:layout="@layout/screen_restore_password" >
+        tools:layout="@layout/screen_restore_password">
         <action
             android:id="@+id/action_restorePasswordScreen_to_verificationScreen"
             app:destination="@id/verificationScreen" />
     </fragment>
+    <action android:id="@+id/action_global_loginScreen" app:destination="@id/loginScreen" />
+    <fragment
+        android:id="@+id/ownerDataScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.profile.OwnerDataScreen"
+        android:label="OwnerDataScreen" >
+        <action
+            android:id="@+id/action_ownerDataScreen_to_getOwnerDataScreen"
+            app:destination="@id/getOwnerDataScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/getOwnerDataScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.profile.GetOwnerDataScreen"
+        android:label="GetOwnerDataScreen" />
 
 </navigation>

@@ -25,14 +25,13 @@ import javax.inject.Inject
 class HomeViewModelImpl @Inject constructor(
     private val homeUseCase: HomeUseCase,
     private val testsUseCase: TestsUseCase,
-    private val applicantRepository: ApplicantRepository,
     private val navigator: Navigator
 ) : HomeViewModel, ViewModel() {
 
 
     override val loading = MutableStateFlow(false)
-    override val loadingNewsLetter = MutableStateFlow(false)
     override val message = MutableStateFlow("")
+    override val loadingNewsLetter = MutableStateFlow(false)
 
     override var serviceList = MutableStateFlow(emptyList<Service>())
     override val newsLettersList = MutableStateFlow(emptyList<NewsLetter>())
@@ -77,7 +76,7 @@ class HomeViewModelImpl @Inject constructor(
         }
     }
 
-    override suspend fun add(applicant: Education) = applicantRepository.addEducation(applicant)
+//    override suspend fun add(applicant: Education) = applicantRepository.addEducation(applicant)
 
     override fun openServiceDetail(service: Service) {
         viewModelScope.launch {

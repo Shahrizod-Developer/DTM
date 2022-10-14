@@ -3,6 +3,7 @@ package uz.gita.dtm.presentation.ui.screen.fragment.main.home
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -96,5 +97,11 @@ class HomeScreen : Fragment(R.layout.screen_home) {
         snapHelper.attachToRecyclerView(binding.viewPager)
 //        snapHelper.attachToRecyclerView(binding.rvNews)
 
+    }
+
+    private fun setupFullHeight(bottomSheet: View) {
+        val layoutParams = bottomSheet.layoutParams
+        layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
+        bottomSheet.layoutParams = layoutParams
     }
 }

@@ -12,6 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.dtm.R
 import uz.gita.dtm.databinding.ScreenProfileBinding
 import uz.gita.dtm.presentation.ui.screen.fragment.main.MainScreen
+import uz.gita.dtm.presentation.ui.screen.fragment.main.MainScreenDirections
 import uz.gita.dtm.presentation.ui.viewmodel.ProfileViewModel
 import uz.gita.dtm.presentation.ui.viewmodel.impl.ProfileViewModelImpl
 
@@ -23,7 +24,7 @@ class ProfileScreen : Fragment(R.layout.screen_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         viewBinding.btnLogin.setOnClickListener {
-//            findNavController().navigate(ProfileScreenDirections.actionProfileScreenToLoginScreen())
+            findNavController().navigate(MainScreenDirections.actionMainScreenToLockScreen())
         }
     }
 }

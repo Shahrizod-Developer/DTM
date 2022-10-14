@@ -1,5 +1,6 @@
 package uz.gita.dtm.domain.repository.applicant.impl
 
+import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
@@ -7,6 +8,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import uz.gita.dtm.data.models.mapper.Mapper.toAddress
 import uz.gita.dtm.data.models.mapper.Mapper.toEducation
@@ -24,45 +26,84 @@ class ApplicantRepositoryImpl @Inject constructor() : ApplicantRepository {
 
     private val db = Firebase.firestore
 
-    override suspend fun getPassport(request: ApplicantRequest): Flow<ResultData<Passport>> =
+    override fun getPassport(
+        applicantRequest: ApplicantRequest,
+        state: Boolean
+    ): Flow<ResultData<Passport>> =
         callbackFlow {
 
             val passport = db.collection("passport").addSnapshotListener { value, error ->
+
                 val data = value!!.documents.map {
+
                     it.toPassport()
+                }.filter {
+                    if (state) {
+                        it.passportsSeries == applicantRequest.series
+                                && it.passportSeriesNumber == applicantRequest.seriesNumber
+                    } else {
+                        it.passportsSeries == MySharedPreference.series
+                                && it.passportSeriesNumber == MySharedPreference.passportNumber
+                    }
+                }.toList()
+
+                if (ResultData.success(data[0]).isSuccess) {
+                    if (state) {
+                        MySharedPreference.series = data[0].passportsSeries
+                        MySharedPreference.passportNumber = data[0].passportSeriesNumber
+                        MySharedPreference.JShShIR = data[0].jShShir
+                    }
                 }
                 trySend(ResultData.success(data[0]))
             }
             awaitClose { passport.remove() }
         }.flowOn(Dispatchers.IO)
 
-    override suspend fun addAddress(applicantAddress: ApplicantAddress) {
-
-        db.collection("address").document(applicantAddress.id).set(applicantAddress)
+    override fun getJShShR(): Flow<String> = flow {
+        emit(MySharedPreference.JShShIR.toString())
     }
 
-    override suspend fun getAddress(jShShR: Long): Flow<ApplicantAddress> = callbackFlow {
+    override fun addAddress(applicantAddress: ApplicantAddress): Flow<ResultData<String>> =
+        callbackFlow {
+            db.collection("address")
+                .document(applicantAddress.id)
+                .set(applicantAddress).addOnCompleteListener { result ->
+                    if (result.isSuccessful) {
+                        trySend(ResultData.success("Doimiy yashash manzili qo'shildi"))
+                    }
+                }
 
-        val address = db.collection("address").addSnapshotListener { value, error ->
-            val data = value!!.documents.map {
-                it.toAddress()
-            }
-            trySend(data[0])
         }
-        awaitClose { address.remove() }
-    }.flowOn(Dispatchers.IO)
 
-    override suspend fun addEducation(education: Education) {
-        db.collection("educations").document(education.id).set(education)
-    }
+    override fun getAddress(jShShR: Long): Flow<ResultData<ApplicantAddress>> =
+        callbackFlow {
 
-    override suspend fun getEducation(jShShR: Long): Flow<Education> = callbackFlow {
+            val address = db.collection("address").addSnapshotListener { value, error ->
+                val data = value!!.documents.map {
+                    it.toAddress()
+                }
+                trySend(ResultData.success(data[0]))
+            }
+            awaitClose { address.remove() }
+        }.flowOn(Dispatchers.IO)
 
-        val address = db.collection("educations").addSnapshotListener { value,  error ->
+    override fun addEducation(education: Education): Flow<ResultData<String>> =
+        callbackFlow {
+            db.collection("educations").document(education.id).set(education)
+                .addOnCompleteListener { result ->
+                    if (result.isSuccessful) {
+                        trySend(ResultData.success("Ta'lim muassasasi qo'shildi"))
+                    }
+                }
+        }
+
+    override fun getEducation(jShShR: Long): Flow<ResultData<Education>> = callbackFlow {
+
+        val address = db.collection("educations").addSnapshotListener { value, error ->
             val data = value!!.documents.map {
                 it.toEducation()
             }
-            trySend(data[0])
+            trySend(ResultData.success(data[0]))
         }
         awaitClose { address.remove() }
     }.flowOn(Dispatchers.IO)

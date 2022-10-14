@@ -14,7 +14,7 @@ import uz.gita.dtm.presentation.ui.viewmodel.impl.LockViewModelImpl
 @AndroidEntryPoint
 class LockScreen : Fragment(R.layout.screen_lock) {
     private val viewBinding: ScreenLockBinding by viewBinding(ScreenLockBinding::bind)
-    private val viewModel: LockViewModel by viewModels<LockViewModelImpl>()
+//    private val viewModel: LockViewModel byviewModels<LockViewModelImpl>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
