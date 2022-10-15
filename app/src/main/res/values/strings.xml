@@ -33,4 +33,13 @@
     <string name="passport_series">Passport yoki ID karta seriya va raqami</string>
     <string name="update_owner_data">Shaxsiy ma\'lumotlarni yangilash</string>
     <string name="confirm">Tasdiqlsh</string>
+    <string name="application">Arizalarim</string>
+    <string name="state">To\'lanmagan</string>
+    <string name="account">Akkaunt</string>
+    <string name="education">Umumta\'lim muassasasi</string>
+    <string name="change_phone">telefon raqamni o\'zgartirish</string>
+    <string name="change_password">Parolni o\'zgartirish</string>
+    <string name="langugae">Interfeys tili</string>
+    <string name="logout">Tizimdan chiqish</string>
+    <string name="owner_data_con">Qonun talablari doirasida shaxsga doir ma\'lumotlarimdan foydalanishga va ishlov berishga rozilik bildiraman</string>
 </resources>

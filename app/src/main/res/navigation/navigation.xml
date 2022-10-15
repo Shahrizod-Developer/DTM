@@ -63,6 +63,9 @@
         <action
             android:id="@+id/action_admissionScreen_to_ownerDataScreen"
             app:destination="@id/ownerDataScreen" />
+        <action
+            android:id="@+id/action_admissionScreen_to_getOwnerDataScreen"
+            app:destination="@id/getOwnerDataScreen" />
     </fragment>
     <fragment
         android:id="@+id/applicationScreen2"
@@ -138,6 +141,12 @@
     <fragment
         android:id="@+id/getOwnerDataScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.profile.GetOwnerDataScreen"
-        android:label="GetOwnerDataScreen" />
+        android:label="GetOwnerDataScreen" >
+        <action
+            android:id="@+id/action_getOwnerDataScreen_to_ownerDataScreen"
+            app:destination="@id/ownerDataScreen"
+            app:popUpTo="@id/ownerDataScreen"
+            app:popUpToInclusive="false" />
+    </fragment>
 
 </navigation>

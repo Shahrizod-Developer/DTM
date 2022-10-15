@@ -1,5 +1,6 @@
 package uz.gita.dtm.presentation.ui.viewmodel.impl
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -8,10 +9,14 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import uz.gita.dtm.data.models.data.Data
 import uz.gita.dtm.data.models.request.ApplicantRequest
+import uz.gita.dtm.data.shp.MySharedPreference
 import uz.gita.dtm.data.utils.ResultData
 import uz.gita.dtm.domain.usecase.ApplicantUseCase
 import uz.gita.dtm.presentation.navigation.Navigator
+import uz.gita.dtm.presentation.ui.screen.fragment.main.profile.GetOwnerDataScreenDirections
+import uz.gita.dtm.presentation.ui.screen.fragment.main.profile.OwnerDataScreenDirections
 import uz.gita.dtm.presentation.ui.viewmodel.GetOwnerDataViewModel
 import javax.inject.Inject
 
@@ -49,10 +54,12 @@ class GetOwnerDataViewModelImpl @Inject constructor(
                         loading.emit(false)
                     }
                     is ResultData.Success -> {
+
                         jShShRFlow.emit(it.data.jShShir.toString())
                         loading.emit(false)
                         message.emit("Yangilandi")
-                        navigator.back()
+                        if (Data.state.value) navigator.navigateTo(GetOwnerDataScreenDirections.actionGetOwnerDataScreenToOwnerDataScreen())
+                        else navigator.back()
                     }
                     is ResultData.Message -> {
                         message.emit(it.message.toString())

@@ -18,8 +18,8 @@ import uz.gita.dtm.R
 
 class InternetBroadCast(context: Context) : BroadcastReceiver() {
     private val db = Firebase.firestore
-    lateinit var dialog: Dialog
-    lateinit var view: View
+    var dialog: Dialog
+    var view: View
     private var block: (() -> Unit)? = null
 
     init {
@@ -28,6 +28,7 @@ class InternetBroadCast(context: Context) : BroadcastReceiver() {
         dialog.setContentView(
             view
         )
+
         dialog.window?.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.MATCH_PARENT
@@ -54,10 +55,9 @@ class InternetBroadCast(context: Context) : BroadcastReceiver() {
             val docRef = db.collection("pin").document("connection")
             docRef.get().addOnSuccessListener {
                 if (it.metadata.isFromCache) {
-                    Log.d("TTT", "ishla")
                     dialog.show()
                 } else {
-                    dialog.hide()
+                    dialog.dismiss()
                 }
             }.addOnFailureListener {
                 dialog.show()
@@ -65,5 +65,4 @@ class InternetBroadCast(context: Context) : BroadcastReceiver() {
                 .addOnCanceledListener { dialog.show() }
         }
     }
-
 }

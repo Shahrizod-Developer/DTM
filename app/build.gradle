@@ -64,6 +64,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:20.0.2'
     implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.13'
 
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
     //di
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"

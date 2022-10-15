@@ -18,19 +18,23 @@ class ApplicationRepositoryImpl @Inject constructor() : ApplicationRepository {
 
     private val db = Firebase.firestore
 
-    override fun getApplications(number: String): Flow<List<Application>> =
+    override fun getApplications(): Flow<ResultData<List<Application>>> =
         callbackFlow {
 
             val applications = db.collection("applications").addSnapshotListener { value, error ->
                 val data = value?.documents?.map {
                     it.toApplication()
                 }
-                trySend(data ?: emptyList())
+                trySend(ResultData.success(data ?: emptyList()))
             }
             awaitClose { applications.remove() }
         }
 
-    override fun addApplication(application: Application) {
+    override fun getApplicationByJShSHR(): Flow<ResultData<Application>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun addApplication(application: Application) {
         db.collection("applications").document(application.id.toString()).set(application)
     }
 }

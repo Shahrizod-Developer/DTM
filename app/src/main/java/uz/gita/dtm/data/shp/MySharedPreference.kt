@@ -34,7 +34,7 @@ class MySharedPreference {
                 sharedPref.edit().putString("verification_id", number).apply()
             }
         var JShShIR: Long
-            get() = sharedPref.getLong("jshshr", -1L)
+            get() = sharedPref.getLong("jshshr", 0)
             set(number) {
                 sharedPref.edit().putLong("jshshr", number).apply()
             }

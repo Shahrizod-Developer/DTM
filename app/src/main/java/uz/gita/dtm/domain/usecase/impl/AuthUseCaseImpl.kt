@@ -25,4 +25,6 @@ class AuthUseCaseImpl @Inject constructor(
     override fun setNewPassword(password: String) = repository.setNewPassword(password)
 
     override fun userPresence(): Flow<Boolean> = repository.userPresence()
+
+    override fun applicantPresence(): Flow<Boolean> = repository.applicantPresence()
 }

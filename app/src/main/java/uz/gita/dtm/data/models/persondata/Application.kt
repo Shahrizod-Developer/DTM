@@ -6,7 +6,7 @@ data class Application(
     val image: String,
     val number: String,
     val date: Long,
-    val time: Long,
+    val time: String,
     val state: Boolean,
     val pay: String,
     val applicantName: String,

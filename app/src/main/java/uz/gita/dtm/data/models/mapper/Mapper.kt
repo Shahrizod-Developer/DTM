@@ -47,7 +47,7 @@ object Mapper {
         image = this["image"].toString(),
         number = this["number"].toString(),
         date = this["date"].toString().toLong(),
-        time = this["time"].toString().toLong(),
+        time = this["time"].toString(),
         state = this["state"].toString().toBoolean(),
         pay = this["pay"].toString(),
         applicantName = this["applicant_name"].toString(),

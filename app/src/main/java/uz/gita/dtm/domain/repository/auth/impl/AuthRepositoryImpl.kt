@@ -158,4 +158,12 @@ class AuthRepositoryImpl @Inject constructor() : AuthRepository {
             emit(false)
         }
     }
+
+    override fun applicantPresence(): Flow<Boolean> = flow {
+        if (MySharedPreference.JShShIR != 0L) {
+            emit(true)
+        } else {
+            emit(false)
+        }
+    }
 }

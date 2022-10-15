@@ -63,7 +63,6 @@ class OwnerDataScreen : Fragment(R.layout.screen_owner_data) {
                 binding.lastName.text = it.lastName
                 binding.series.text = it.passportsSeries + it.passportSeriesNumber
                 binding.jShShR.text = it.jShShir.toString()
-                Log.d("TTT", it.image)
 
                 val options: RequestOptions = RequestOptions()
                     .centerCrop()

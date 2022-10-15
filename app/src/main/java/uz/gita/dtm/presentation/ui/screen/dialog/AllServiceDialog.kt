@@ -38,6 +38,10 @@ class AllServiceDialog : BottomSheetDialogFragment() {
     ): View? {
         binding = DialogAllServicesBinding.inflate(inflater, container, false)
 
+        viewModel.serviceList.onEach {
+            adapter.submitList(it)
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+
         binding.rv.adapter = adapter
 
         binding.deleteText.setOnClickListener {
@@ -45,6 +49,7 @@ class AllServiceDialog : BottomSheetDialogFragment() {
                 binding.searchService.setText("")
             }
         }
+
         binding.arrow.setOnClickListener {
             this.dismiss()
         }

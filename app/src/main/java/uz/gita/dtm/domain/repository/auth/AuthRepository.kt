@@ -14,4 +14,5 @@ interface AuthRepository {
     fun restorePassword(phoneNumber: String): Flow<ResultData<Unit>>
     fun setNewPassword(password: String): Flow<ResultData<Unit>>
     fun userPresence(): Flow<Boolean>
+    fun applicantPresence(): Flow<Boolean>
 }

@@ -4,9 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import uz.gita.dtm.data.models.data.Data.Companion.state
 import uz.gita.dtm.data.models.persondata.Passport
 import uz.gita.dtm.data.models.request.ApplicantRequest
 import uz.gita.dtm.data.utils.ResultData
@@ -22,24 +24,13 @@ class OwnerDataViewModelImpl @Inject constructor(
     private val useCase: ApplicantRepository,
     private val navigator: Navigator
 ) : OwnerDataViewModel, ViewModel() {
-    override val passportData = MutableStateFlow(
-        Passport(
-            firstName = "",
-            lastName = "",
-            fatherName = "",
-            image = "",
-            birthday = 1,
-            passportSeriesNumber = 1,
-            passportsSeries = "",
-            jShShir = 1
-        )
-    )
+    override val passportData = MutableSharedFlow<Passport>()
     override val loading = MutableStateFlow(false)
     override val message = MutableStateFlow("")
 
     init {
         viewModelScope.launch {
-            useCase.getPassport(ApplicantRequest("", 0), false).collectLatest {
+            useCase.getPassport(ApplicantRequest("", 0), state.value).collectLatest {
                 when (it) {
                     is ResultData.Error -> {
                         loading.emit(false)

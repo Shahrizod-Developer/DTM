@@ -35,7 +35,6 @@ class ApplicantRepositoryImpl @Inject constructor() : ApplicantRepository {
             val passport = db.collection("passport").addSnapshotListener { value, error ->
 
                 val data = value!!.documents.map {
-
                     it.toPassport()
                 }.filter {
                     if (state) {

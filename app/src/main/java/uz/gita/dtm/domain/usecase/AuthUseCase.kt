@@ -20,4 +20,6 @@ interface AuthUseCase {
     fun setNewPassword(password: String): Flow<ResultData<Unit>>
 
     fun userPresence(): Flow<Boolean>
+
+    fun applicantPresence(): Flow<Boolean>
 }

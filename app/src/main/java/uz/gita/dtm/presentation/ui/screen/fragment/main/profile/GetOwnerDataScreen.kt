@@ -10,8 +10,11 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import uz.gita.dtm.R
+import uz.gita.dtm.data.models.data.Data.Companion.state
 import uz.gita.dtm.data.models.request.ApplicantRequest
+import uz.gita.dtm.data.shp.MySharedPreference
 import uz.gita.dtm.databinding.ScreenGetOwnerDataBinding
 import uz.gita.dtm.presentation.ui.viewmodel.GetOwnerDataViewModel
 import uz.gita.dtm.presentation.ui.viewmodel.impl.GetOwnerDataViewModelImpl
@@ -24,14 +27,16 @@ class GetOwnerDataScreen : Fragment(R.layout.screen_get_owner_data) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-
         binding.updateOwnerData.setOnClickListener {
+            lifecycleScope.launch {
+                state.emit(true)
+            }
             viewModel.onCLickConfirm(
                 ApplicantRequest(
                     binding.series.text.toString(),
                     binding.number.text.toString().toLong()
                 ),
-                true
+                state.value
             )
         }
 
