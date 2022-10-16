@@ -3,7 +3,11 @@ package uz.gita.dtm.presentation.ui.screen.activity
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -15,6 +19,7 @@ import uz.gita.dtm.presentation.navigation.Handler
 import uz.gita.dtm.utils.InternetBroadCast
 import javax.inject.Inject
 
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     @Inject
@@ -22,12 +27,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val broadCast = InternetBroadCast(this)
+        val window: Window = this.window
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        val broadCast = InternetBroadCast(this,window)
         registerReceiver(
             broadCast,
             IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
         )
-        broadCast.check { finish() }
+        broadCast.check {
+            finish() }
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
 

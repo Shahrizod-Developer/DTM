@@ -9,17 +9,19 @@ import android.net.ConnectivityManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import uz.gita.dtm.R
 
 
-class InternetBroadCast(context: Context) : BroadcastReceiver() {
+class InternetBroadCast(val context: Context,val window: Window) : BroadcastReceiver() {
     private val db = Firebase.firestore
-    var dialog: Dialog
-    var view: View
+    lateinit var dialog: Dialog
+    lateinit var view: View
     private var block: (() -> Unit)? = null
 
     init {
@@ -28,14 +30,14 @@ class InternetBroadCast(context: Context) : BroadcastReceiver() {
         dialog.setContentView(
             view
         )
-
         dialog.window?.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.MATCH_PARENT
         )
         dialog.setCancelable(false)
         view.findViewById<AppCompatButton>(R.id.confirm).setOnClickListener {
-            block?.invoke()
+            window.setStatusBarColor(ContextCompat.getColor(context, R.color.red))
+        dialog.cancel()
         }
     }
 
@@ -51,18 +53,25 @@ class InternetBroadCast(context: Context) : BroadcastReceiver() {
         val mobile = connMgr
             .getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
         if (wifi!!.isAvailable || mobile!!.isAvailable) {
-            db.clearPersistence()
-            val docRef = db.collection("pin").document("connection")
-            docRef.get().addOnSuccessListener {
-                if (it.metadata.isFromCache) {
-                    dialog.show()
-                } else {
-                    dialog.dismiss()
-                }
-            }.addOnFailureListener {
-                dialog.show()
-            }
-                .addOnCanceledListener { dialog.show() }
+            check()
         }
+
     }
+
+    fun check() {
+        val docRef = db.collection("pin").document("connection")
+        docRef.get().addOnSuccessListener {
+            if (it.metadata.isFromCache) {
+                Log.d("TTT", "ishla")
+                dialog.show()
+            } else {
+                window.setStatusBarColor(ContextCompat.getColor(context, R.color.black))
+                dialog.hide()
+            }
+        }.addOnFailureListener {
+            dialog.show()
+        }
+            .addOnCanceledListener { dialog.show() }
+    }
+
 }
