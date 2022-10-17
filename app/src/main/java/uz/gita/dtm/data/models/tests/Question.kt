@@ -1,8 +1,12 @@
 package uz.gita.dtm.data.models.tests
 
+
 data class Question(
-    val id: String,
-    val question: String,
-    val answers: List<String>,
-    val trueAns: String
+    var question: String,
+    var ans1: String,
+    var ans2: String,
+    var ans3: String,
+    var ans4: String,
+    var level: Level,
+    var trueAns: String
 )

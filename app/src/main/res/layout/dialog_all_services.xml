@@ -45,11 +45,11 @@
         <ImageView
 
             android:id="@+id/deleteText"
-            android:layout_width="@dimen/_28sdp"
-            android:layout_height="@dimen/_28sdp"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
             android:layout_margin="@dimen/_8sdp"
             android:background="@drawable/back_style_image"
-            android:padding="@dimen/_10sdp"
+            android:padding="@dimen/_12sdp"
             android:src="@drawable/delete_svgrepo_com__1_"
             app:tint="#374FD1" />
 
@@ -58,8 +58,8 @@
     <ImageView
 
         android:id="@+id/arrow"
-        android:layout_width="@dimen/_28sdp"
-        android:layout_height="@dimen/_28sdp"
+        android:layout_width="@dimen/_36sdp"
+        android:layout_height="@dimen/_36sdp"
         android:background="@drawable/back_style_image"
         android:padding="@dimen/_5sdp"
         android:src="@drawable/arrow_bottom_svgrepo_com"

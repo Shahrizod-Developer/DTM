@@ -11,4 +11,5 @@ interface OwnerDataViewModel {
 
     fun back()
     fun openUpdateOwnerDataScreen()
+    fun getOwnerData()
 }

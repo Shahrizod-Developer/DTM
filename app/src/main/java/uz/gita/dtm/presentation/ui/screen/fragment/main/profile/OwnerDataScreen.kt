@@ -33,9 +33,11 @@ class OwnerDataScreen : Fragment(R.layout.screen_owner_data) {
     private val viewModel: OwnerDataViewModel by viewModels<OwnerDataViewModelImpl>()
     private lateinit var dateFormat: SimpleDateFormat
 
+
     @SuppressLint("SimpleDateFormat", "SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        viewModel.getOwnerData()
         dateFormat = SimpleDateFormat("dd-MM-yyyy")
 
         viewModel.loading.onEach {
@@ -53,6 +55,9 @@ class OwnerDataScreen : Fragment(R.layout.screen_owner_data) {
 
         binding.updateOwnerData.setOnClickListener {
             viewModel.openUpdateOwnerDataScreen()
+        }
+        binding.back.setOnClickListener {
+            viewModel.back()
         }
 
         viewModel.passportData.onEach {

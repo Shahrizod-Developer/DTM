@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import uz.gita.dtm.data.models.persondata.Education
 import uz.gita.dtm.data.models.service.Service
 import uz.gita.dtm.data.models.tests.NewsLetter
+import uz.gita.dtm.data.models.tests.Test
 
 interface HomeViewModel {
 
@@ -14,7 +15,6 @@ interface HomeViewModel {
     val serviceList: Flow<List<Service>>
     val newsLettersList: Flow<List<NewsLetter>>
 
-//    suspend fun add(applicant: Education)
-
     fun openServiceDetail(service: Service)
+    fun openTestListScreen(newsLetter: NewsLetter)
 }

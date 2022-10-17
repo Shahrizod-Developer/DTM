@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 import uz.gita.dtm.R
 import uz.gita.dtm.data.models.service.Service
 import uz.gita.dtm.databinding.DialogAboutServiceBinding
+import uz.gita.dtm.databinding.DialogServiceIsBinding
 import uz.gita.dtm.databinding.DialogUseServiceBinding
 import uz.gita.dtm.databinding.ScreenServiceDetailBinding
 import uz.gita.dtm.presentation.ui.viewmodel.ServiceDetailsViewModel
@@ -37,8 +38,16 @@ class ServiceDetailsScreen : Fragment(R.layout.screen_service_detail) {
         binding.title.text = args.service.title
 
         binding.useService.setOnClickListener {
-            viewModel.onCLickUseService()
+
+            if (binding.title.text == "Oliy ta’lim muassasalarining " +
+                "bakalavriatiga qabul (2022-2023-o‘quv yili uchun)"
+            ) {
+                viewModel.onCLickUseService()
+            } else {
+                showDialog()
+            }
         }
+
         binding.aboutService.setOnClickListener {
             viewModel.showAboutServiceDialog()
         }
@@ -52,8 +61,12 @@ class ServiceDetailsScreen : Fragment(R.layout.screen_service_detail) {
 
         lifecycleScope.launch {
             viewModel.showAboutServiceDialogFlow.collectLatest {
+                var k = 1
                 if (it) {
-                    showAboutService(args.service)
+                    if (k == 1) {
+                        showAboutService(args.service)
+                        k++
+                    }
                 }
             }
         }
@@ -71,6 +84,19 @@ class ServiceDetailsScreen : Fragment(R.layout.screen_service_detail) {
                 }
             }
         }
+    }
+
+    private fun showDialog() {
+        val dialog = AlertDialog.Builder(requireContext()).create()
+        val dialogBinding =
+            DialogServiceIsBinding.inflate(LayoutInflater.from(requireContext()), null, false)
+
+        dialogBinding.enter.setOnClickListener {
+            dialog.cancel()
+        }
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setView(dialogBinding.root)
+        dialog.show()
     }
 
     private fun showUseServiceDialog() {

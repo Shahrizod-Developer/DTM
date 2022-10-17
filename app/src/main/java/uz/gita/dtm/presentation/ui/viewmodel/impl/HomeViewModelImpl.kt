@@ -12,6 +12,7 @@ import uz.gita.dtm.data.models.persondata.Applicant
 import uz.gita.dtm.data.models.persondata.Education
 import uz.gita.dtm.data.models.service.Service
 import uz.gita.dtm.data.models.tests.NewsLetter
+import uz.gita.dtm.data.models.tests.Test
 import uz.gita.dtm.data.utils.ResultData
 import uz.gita.dtm.domain.repository.applicant.ApplicantRepository
 import uz.gita.dtm.domain.usecase.HomeUseCase
@@ -76,8 +77,6 @@ class HomeViewModelImpl @Inject constructor(
         }
     }
 
-//    override suspend fun add(applicant: Education) = applicantRepository.addEducation(applicant)
-
     override fun openServiceDetail(service: Service) {
         viewModelScope.launch {
             navigator.navigateTo(
@@ -85,6 +84,12 @@ class HomeViewModelImpl @Inject constructor(
                     service
                 )
             )
+        }
+    }
+
+    override fun openTestListScreen(test: NewsLetter) {
+        viewModelScope.launch {
+            navigator.navigateTo(MainScreenDirections.actionMainScreenToTestListScreen(test))
         }
     }
 }

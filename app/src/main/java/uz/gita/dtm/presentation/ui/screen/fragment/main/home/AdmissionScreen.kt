@@ -35,10 +35,16 @@ class AdmissionScreen : Fragment(R.layout.screen_admission) {
                 }
             }
         }
+
+        binding.back.setOnClickListener {
+            viewModel.back()
+        }
         lifecycleScope.launch {
             viewModel.showForOwnerDialogFLow.collectLatest {
-                if (it) {
+                var k = 1
+                if (it && k == 1) {
                     showForOwnerDialog()
+                    k++
                 }
             }
         }

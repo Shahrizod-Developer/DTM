@@ -9,11 +9,11 @@
     <ImageView
 
         android:id="@+id/back"
-        android:layout_width="@dimen/_28sdp"
-        android:layout_height="@dimen/_28sdp"
+        android:layout_width="@dimen/_36sdp"
+        android:layout_height="@dimen/_36sdp"
         android:layout_margin="@dimen/_15sdp"
         android:background="@drawable/back_style_image"
-        android:padding="@dimen/_5sdp"
+        android:padding="@dimen/_10sdp"
         android:src="@drawable/arrow_back_svgrepo_com"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,8 +26,9 @@
         android:layout_margin="@dimen/_15sdp"
         android:fontFamily="@font/new_font"
         android:gravity="start"
+        android:text="Oliy ta'lim muassasalarining bakalavraitiga qabul(2022-2023)"
         android:textColor="@color/black"
-        android:textSize="@dimen/_18sdp"
+        android:textSize="@dimen/_16sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/back"
         app:layout_constraintVertical_bias="0" />
@@ -40,7 +41,7 @@
         android:layout_margin="@dimen/_15sdp"
         android:text="@string/use_service"
         android:textColor="#303030"
-        android:textSize="@dimen/_14sdp"
+        android:textSize="@dimen/_16sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintLeft_toLeftOf="parent"

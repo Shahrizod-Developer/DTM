@@ -46,14 +46,16 @@ class ApplicantRepositoryImpl @Inject constructor() : ApplicantRepository {
                     }
                 }.toList()
 
-                if (ResultData.success(data[0]).isSuccess) {
-                    if (state) {
-                        MySharedPreference.series = data[0].passportsSeries
-                        MySharedPreference.passportNumber = data[0].passportSeriesNumber
-                        MySharedPreference.JShShIR = data[0].jShShir
+                if (data.isNotEmpty()) {
+                    if (ResultData.success(data[0]).isSuccess) {
+                        if (state) {
+                            MySharedPreference.series = data[0].passportsSeries
+                            MySharedPreference.passportNumber = data[0].passportSeriesNumber
+                            MySharedPreference.JShShIR = data[0].jShShir
+                        }
                     }
+                    trySend(ResultData.success(data[0]))
                 }
-                trySend(ResultData.success(data[0]))
             }
             awaitClose { passport.remove() }
         }.flowOn(Dispatchers.IO)
@@ -81,7 +83,9 @@ class ApplicantRepositoryImpl @Inject constructor() : ApplicantRepository {
                 val data = value!!.documents.map {
                     it.toAddress()
                 }
-                trySend(ResultData.success(data[0]))
+                if (data.isNotEmpty()) {
+                    trySend(ResultData.success(data[0]))
+                }
             }
             awaitClose { address.remove() }
         }.flowOn(Dispatchers.IO)

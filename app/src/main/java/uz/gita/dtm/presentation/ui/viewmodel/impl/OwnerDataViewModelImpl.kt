@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import uz.gita.dtm.data.models.data.Data.Companion.state
 import uz.gita.dtm.data.models.persondata.Passport
 import uz.gita.dtm.data.models.request.ApplicantRequest
+import uz.gita.dtm.data.shp.MySharedPreference
 import uz.gita.dtm.data.utils.ResultData
 import uz.gita.dtm.domain.repository.applicant.ApplicantRepository
 import uz.gita.dtm.domain.repository.service.ServiceRepository
@@ -24,13 +25,34 @@ class OwnerDataViewModelImpl @Inject constructor(
     private val useCase: ApplicantRepository,
     private val navigator: Navigator
 ) : OwnerDataViewModel, ViewModel() {
-    override val passportData = MutableSharedFlow<Passport>()
+    override val passportData = MutableStateFlow(
+        Passport(
+            "", "", "", "", 1, "", 1, 1
+        )
+    )
     override val loading = MutableStateFlow(false)
     override val message = MutableStateFlow("")
 
-    init {
+    override fun back() {
         viewModelScope.launch {
-            useCase.getPassport(ApplicantRequest("", 0), state.value).collectLatest {
+            navigator.back()
+        }
+    }
+
+    override fun openUpdateOwnerDataScreen() {
+        viewModelScope.launch {
+            navigator.navigateTo(OwnerDataScreenDirections.actionOwnerDataScreenToGetOwnerDataScreen())
+        }
+    }
+
+    override fun getOwnerData() {
+        viewModelScope.launch {
+            useCase.getPassport(
+                ApplicantRequest(
+                    MySharedPreference.series,
+                    MySharedPreference.passportNumber
+                ), state.value
+            ).collectLatest {
                 when (it) {
                     is ResultData.Error -> {
                         loading.emit(false)
@@ -44,18 +66,6 @@ class OwnerDataViewModelImpl @Inject constructor(
                     }
                 }
             }
-        }
-    }
-
-    override fun back() {
-        viewModelScope.launch {
-            navigator.back()
-        }
-    }
-
-    override fun openUpdateOwnerDataScreen() {
-        viewModelScope.launch {
-            navigator.navigateTo(OwnerDataScreenDirections.actionOwnerDataScreenToGetOwnerDataScreen())
         }
     }
 }

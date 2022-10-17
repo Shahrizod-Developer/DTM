@@ -90,12 +90,14 @@ class HomeScreen : Fragment(R.layout.screen_home) {
             adapterTest.submitList(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
+        adapterTest.onCLickItem {
+            viewModel.openTestListScreen(it)
+        }
 
         binding.viewPager.adapter = adapter
         binding.rvNews.adapter = adapterTest
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.viewPager)
-//        snapHelper.attachToRecyclerView(binding.rvNews)
 
     }
 

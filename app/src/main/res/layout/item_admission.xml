@@ -2,11 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_34sdp"
+    android:layout_height="@dimen/_40sdp"
     android:layout_marginStart="@dimen/_15sdp"
     android:layout_marginTop="@dimen/_3sdp"
     android:layout_marginEnd="@dimen/_15sdp"
     android:background="@drawable/back_style_cl">
+
 
     <TextView
 
@@ -16,7 +17,7 @@
         android:layout_marginStart="@dimen/_15sdp"
         android:text="@string/owner_data"
         android:textColor="@color/black"
-        android:textSize="@dimen/_12sdp"
+        android:textSize="@dimen/_14sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,8 +25,8 @@
     <ImageView
 
         android:id="@+id/arrowRightOw"
-        android:layout_width="@dimen/_28sdp"
-        android:layout_height="@dimen/_28sdp"
+        android:layout_width="@dimen/_34sdp"
+        android:layout_height="@dimen/_34sdp"
         android:layout_marginEnd="@dimen/_15sdp"
         android:background="@drawable/back_style_image"
         android:padding="@dimen/_8sdp"

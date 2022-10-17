@@ -20,6 +20,18 @@
         <action
             android:id="@+id/action_mainScreen_to_lockScreen"
             app:destination="@id/lockScreen" />
+        <action
+            android:id="@+id/action_mainScreen_to_ownerDataScreen"
+            app:destination="@id/ownerDataScreen" />
+        <action
+            android:id="@+id/action_mainScreen_to_getOwnerDataScreen"
+            app:destination="@id/getOwnerDataScreen" />
+        <action
+            android:id="@+id/action_mainScreen_to_addressScreen"
+            app:destination="@id/addressScreen" />
+        <action
+            android:id="@+id/action_mainScreen_to_testListScreen"
+            app:destination="@id/testListScreen" />
     </fragment>
 
     <fragment
@@ -33,7 +45,7 @@
         <action
             android:id="@+id/action_serviceDetailsScreen_to_loginScreen"
             app:destination="@id/loginScreen"
-            app:popUpTo="@id/navigation" />
+            app:popUpTo="@id/serviceDetailsScreen" />
         <action
             android:id="@+id/action_serviceDetailsScreen_to_admissionScreen"
             app:destination="@id/admissionScreen" />
@@ -59,7 +71,7 @@
     <fragment
         android:id="@+id/admissionScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.home.AdmissionScreen"
-        android:label="AdmissionScreen" >
+        android:label="AdmissionScreen">
         <action
             android:id="@+id/action_admissionScreen_to_ownerDataScreen"
             app:destination="@id/ownerDataScreen" />
@@ -96,7 +108,7 @@
         android:id="@+id/lockScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.LockScreen"
         android:label="LockScreen"
-        tools:layout="@layout/screen_lock"/>
+        tools:layout="@layout/screen_lock" />
     <fragment
         android:id="@+id/registrationScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.auth.RegistrationScreen"
@@ -129,11 +141,13 @@
             android:id="@+id/action_restorePasswordScreen_to_verificationScreen"
             app:destination="@id/verificationScreen" />
     </fragment>
-    <action android:id="@+id/action_global_loginScreen" app:destination="@id/loginScreen" />
+    <action
+        android:id="@+id/action_global_loginScreen"
+        app:destination="@id/loginScreen" />
     <fragment
         android:id="@+id/ownerDataScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.profile.OwnerDataScreen"
-        android:label="OwnerDataScreen" >
+        android:label="OwnerDataScreen">
         <action
             android:id="@+id/action_ownerDataScreen_to_getOwnerDataScreen"
             app:destination="@id/getOwnerDataScreen" />
@@ -141,12 +155,32 @@
     <fragment
         android:id="@+id/getOwnerDataScreen"
         android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.profile.GetOwnerDataScreen"
-        android:label="GetOwnerDataScreen" >
+        android:label="GetOwnerDataScreen">
         <action
             android:id="@+id/action_getOwnerDataScreen_to_ownerDataScreen"
             app:destination="@id/ownerDataScreen"
             app:popUpTo="@id/ownerDataScreen"
-            app:popUpToInclusive="false" />
+            app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/addressScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.fragment.main.profile.AddressScreen"
+        android:label="AddressScreen" />
+    <fragment
+        android:id="@+id/testListScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.tests.TestListScreen"
+        android:label="TestListScreen">
+
+        <argument
+            android:name="test"
+            app:argType="uz.gita.dtm.data.models.tests.NewsLetter" />
+        <action
+            android:id="@+id/action_testListScreen_to_testScreen"
+            app:destination="@id/testScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/testScreen"
+        android:name="uz.gita.dtm.presentation.ui.screen.tests.TestScreen"
+        android:label="TestScreen" />
 
 </navigation>

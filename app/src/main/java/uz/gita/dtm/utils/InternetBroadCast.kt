@@ -1,6 +1,7 @@
 package uz.gita.dtm.utils
 
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -18,15 +19,14 @@ import com.google.firebase.ktx.Firebase
 import uz.gita.dtm.R
 
 
-class InternetBroadCast(val context: Context,val window: Window) : BroadcastReceiver() {
+class InternetBroadCast(val context: Context, private val window: Window) : BroadcastReceiver() {
     private val db = Firebase.firestore
-    lateinit var dialog: Dialog
-    lateinit var view: View
+    var dialog: Dialog = Dialog(context)
+    @SuppressLint("InflateParams")
+    var view: View = LayoutInflater.from(context).inflate(R.layout.overlay_no_internet, null)
     private var block: (() -> Unit)? = null
 
     init {
-        view = LayoutInflater.from(context).inflate(R.layout.overlay_no_internet, null)
-        dialog = Dialog(context)
         dialog.setContentView(
             view
         )
@@ -36,8 +36,8 @@ class InternetBroadCast(val context: Context,val window: Window) : BroadcastRece
         )
         dialog.setCancelable(false)
         view.findViewById<AppCompatButton>(R.id.confirm).setOnClickListener {
-            window.setStatusBarColor(ContextCompat.getColor(context, R.color.red))
-        dialog.cancel()
+            window.statusBarColor = ContextCompat.getColor(context, R.color.red)
+            dialog.cancel()
         }
     }
 
@@ -58,14 +58,14 @@ class InternetBroadCast(val context: Context,val window: Window) : BroadcastRece
 
     }
 
-    fun check() {
+    private fun check() {
         val docRef = db.collection("pin").document("connection")
         docRef.get().addOnSuccessListener {
             if (it.metadata.isFromCache) {
                 Log.d("TTT", "ishla")
                 dialog.show()
             } else {
-                window.setStatusBarColor(ContextCompat.getColor(context, R.color.black))
+                window.statusBarColor = ContextCompat.getColor(context, R.color.black)
                 dialog.hide()
             }
         }.addOnFailureListener {

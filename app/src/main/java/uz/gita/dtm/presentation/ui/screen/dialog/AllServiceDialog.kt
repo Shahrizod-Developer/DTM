@@ -35,7 +35,7 @@ class AllServiceDialog : BottomSheetDialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DialogAllServicesBinding.inflate(inflater, container, false)
 
         viewModel.serviceList.onEach {
@@ -53,7 +53,10 @@ class AllServiceDialog : BottomSheetDialogFragment() {
         binding.arrow.setOnClickListener {
             this.dismiss()
         }
-
+        adapter.onCLickItem {
+            dialog?.cancel()
+            viewModel.openServiceDetail(it)
+        }
         binding.searchService.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
@@ -89,7 +92,13 @@ class AllServiceDialog : BottomSheetDialogFragment() {
                         adapter.submitList(it)
                     }.launchIn(viewLifecycleOwner.lifecycleScope)
 
+
                     binding.rv.adapter = adapter
+
+                    adapter.onCLickItem {
+                        dialog?.cancel()
+                        viewModel.openServiceDetail(it)
+                    }
                 }
             }
         })

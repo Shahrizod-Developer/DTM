@@ -52,7 +52,5 @@ class GetOwnerDataScreen : Fragment(R.layout.screen_get_owner_data) {
         viewModel.message.onEach {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }.launchIn(viewLifecycleOwner.lifecycleScope)
-
-
     }
 }

@@ -27,7 +27,6 @@
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0">
@@ -58,8 +57,8 @@
             <ImageView
 
                 android:id="@+id/image"
-                android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_80sdp"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:src="@drawable/bachelor_cap_svgrepo_com"
                 app:layout_constraintLeft_toLeftOf="@id/ownerData"
@@ -124,7 +123,7 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:text="@string/owner_data"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_14sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/ownerIcon"
                 app:layout_constraintLeft_toRightOf="@id/ownerIcon"
                 app:layout_constraintTop_toTopOf="@id/ownerIcon" />
@@ -149,7 +148,7 @@
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:src="@drawable/ic_baseline_home_24"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -165,7 +164,7 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:text="@string/address"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_14sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/addressIcon"
                 app:layout_constraintLeft_toRightOf="@id/addressIcon"
                 app:layout_constraintTop_toTopOf="@id/addressIcon" />
@@ -189,7 +188,7 @@
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:src="@drawable/bachelor_cap_svgrepo_com"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -204,7 +203,7 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:text="@string/education"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_14sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/educationIcon"
                 app:layout_constraintLeft_toRightOf="@id/educationIcon"
                 app:layout_constraintTop_toTopOf="@id/educationIcon" />
@@ -228,7 +227,7 @@
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:src="@drawable/phone_svgrepo_com"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -243,7 +242,7 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:text="@string/change_phone"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_14sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/phoneNumberIcon"
                 app:layout_constraintLeft_toRightOf="@id/phoneNumberIcon"
                 app:layout_constraintTop_toTopOf="@id/phoneNumberIcon" />
@@ -255,7 +254,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:text="90 1363114"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintLeft_toRightOf="@id/phoneNumberIcon"
                 app:layout_constraintTop_toBottomOf="@id/number" />
 
@@ -303,7 +302,7 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:text="@string/change_password"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_14sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/passwordChange"
                 app:layout_constraintLeft_toRightOf="@id/passwordChange"
                 app:layout_constraintTop_toTopOf="@id/passwordChange" />
@@ -315,7 +314,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:text="******"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_14sdp"
                 app:layout_constraintLeft_toRightOf="@id/passwordChange"
                 app:layout_constraintTop_toBottomOf="@id/passwordChan" />
 
@@ -338,7 +337,7 @@
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:src="@drawable/language_svgrepo_com"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -353,7 +352,7 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:text="@string/langugae"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_14sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/languageIcaon"
                 app:layout_constraintLeft_toRightOf="@id/languageIcaon"
                 app:layout_constraintTop_toTopOf="@id/languageIcaon" />
@@ -365,7 +364,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:text="O'zbek tili"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintLeft_toRightOf="@id/languageIcaon"
                 app:layout_constraintTop_toBottomOf="@id/language" />
 
@@ -388,7 +387,7 @@
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:src="@drawable/log_out_svgrepo_com"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -403,7 +402,7 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:text="@string/logout"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_14sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/logout"
                 app:layout_constraintLeft_toRightOf="@id/logout"
                 app:layout_constraintTop_toTopOf="@id/logout" />

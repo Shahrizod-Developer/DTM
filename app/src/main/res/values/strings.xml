@@ -37,9 +37,12 @@
     <string name="state">To\'lanmagan</string>
     <string name="account">Akkaunt</string>
     <string name="education">Umumta\'lim muassasasi</string>
-    <string name="change_phone">telefon raqamni o\'zgartirish</string>
+    <string name="change_phone">Telefon raqamni o\'zgartirish</string>
     <string name="change_password">Parolni o\'zgartirish</string>
     <string name="langugae">Interfeys tili</string>
     <string name="logout">Tizimdan chiqish</string>
     <string name="owner_data_con">Qonun talablari doirasida shaxsga doir ma\'lumotlarimdan foydalanishga va ishlov berishga rozilik bildiraman</string>
+    <string name="phone_number">Telefon raqam</string>
+    <string name="password">Parol</string>
+    <string name="ok">Ok</string>
 </resources>
